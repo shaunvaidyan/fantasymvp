@@ -7,5 +7,6 @@ View Insights into your team's performance over the course of the NFL season!
 
 
 To Do:
-NodeJS backend for requesting and storing data
+NodeJS backend for requesting and storing data  
+
 Frontend for showing views of data arranged in tables
