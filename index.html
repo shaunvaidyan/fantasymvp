@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="src/lib/scriptHelper.js"></script>
+    <script src="src/lib/scripts.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FantasyMVP</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Input a Sleeper League URL</h1>
+        <div id="sleeperData" data-testid="sleeperData">
+            <!-- Fetch some planetary data -->
+        </div>  
+        <div id="sleeperForm">
+            <form data-testid="testForm">
+                <div class="formField">
+                    <label>League URL <input type="text" name="leagueUrl" id="leagueUrl"/></label>
+                <button id="formSubmit">Submit</button>
+            </form>
+        </div>
+        <div id="teams" data-testid="teams">
+          <ol>
+              <li id="teamList" data-testid="teamList">List of Teams</li>
+          </ol>
+      </div>
+  </body>
 </html>
