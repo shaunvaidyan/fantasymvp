@@ -11,19 +11,19 @@ window.addEventListener("load", function (){
         console.log(leagueId);
         formSubmission(document, leagueId, sleeperData, teams);
         event.preventDefault();
-    });1
-   let listedTeams;
+        let listedTeams;
    // Set listedTeamsResponse equal to the value returned by calling myFetchUsers()
-   let listedTeamsResponse = myFetchUsers();
-   listedTeamsResponse.then(function (result) {
+        let listedTeamsResponse = myFetchUsers();
+        listedTeamsResponse.then(function (result) {
         listedTeams = result;
         console.log(listedTeams);
-   }).then(function () {
-    console.log(listedTeams);
+         }).then(function () {
+        console.log(listedTeams);
         
         let owner = listedTeams.map (o => o.display_name);
-        let players = listedTeams.map (o => o.metadata.team_name);
-        addTeamInfo(document, owner, players);
-   })
+        let namedTeams = listedTeams.map (o => o.metadata.team_name);
+        addTeamInfo(document, owner, namedTeams);
+        })
+        });
 
 });
