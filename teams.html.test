@@ -18,6 +18,6 @@
         </div>
         <h1>Choose a Team</h1>
         <!-- table for showing data -->
-        <table id="team"></table>
+        <table id="teams"></table>
     </body>
 </html>
