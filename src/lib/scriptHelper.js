@@ -10,12 +10,16 @@ function formSubmission(document, leagueId, sleeperData, teams) {
   //console.log(teams)
 }
 
-function addTeamInfo(document, owner, players){
+function addTeamInfo(document, owner, teamName){
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
+  //let teamData = document.getElementById("teamData");
   for (let i=0; owner.length > i; i++){
     ownerData.innerHTML +=
-    `<td>${owner[i]}</td>`
+    `<td>${owner[i]}</td>
+    <td>${teamName[i]}</td>`
+    // teamData.innerHTML +=
+    // `<td>${team[i]}</td>`
     }
      
   // sleeperData.innerHTML =
@@ -25,9 +29,9 @@ function addTeamInfo(document, owner, players){
   //       <li>Players: ${players}</li>
   //   </ol>`
 }
-async function myFetch() {
+async function myFetchUsers() {
   let leagueId = "787027217543708672";
-  teamsReturned = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/rosters`).then( function(response) {
+  teamsReturned = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/users`).then( function(response) {
       return response.json();
   });
   return teamsReturned;
