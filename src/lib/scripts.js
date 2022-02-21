@@ -4,27 +4,37 @@ window.addEventListener("load", function (){
     sleeperData.style.visibility = 'hidden';
 
     let form = document.querySelector("form");
+    const leagueSubmit = document.getElementById('leagueSubmit');
+    const userNameSubmit = document.getElementById('userNameSubmit');
     form.reset(); // reset form and clear values if page refreshed
-    form.addEventListener("submit", function(event){
+
+    //form.addEventListener("submit", function(event){
+    leagueSubmit.addEventListener("click", function(event){
         //form.reset();
         let leagueId = document.querySelector("input[name=leagueUrl]").value;
-        //console.log(leagueId);
-        formLeagueIdSubmission(document, leagueId, sleeperData, teams);
-        event.preventDefault();
-        let listedTeams;
-   // Set listedTeamsResponse equal to the value returned by calling myFetchUsers()
-        let listedTeamsResponse = myFetchUsers();
-        listedTeamsResponse.then(function (result) {
-        listedTeams = result;
-
-         }).then(function () {
-        //console.log(listedTeams);
+        //let userName = document.querySelector("input[name=userName]").value;
         
-        let owner = listedTeams.map (o => o.display_name);
-        let namedTeams = listedTeams.map (o => o.metadata.team_name);
-        let jsonLeagueId = listedTeams.map (o => o.league_id);
-        addTeamInfoByLeagueUrl(document, owner, namedTeams, jsonLeagueId);
-        })
+        //console.log(leagueId);
+        //console.log(userName);
+        
+        leagueUrlSubmission(document, form, leagueId, sleeperData, teams);
+        
+        event.preventDefault();
+
+    });
+
+    userNameSubmit.addEventListener("click", function(event){
+        //form.reset();
+        
+        let userName = document.querySelector("input[name=userName]").value;
+        
+        
+        //console.log(userName);
+        
+        userNameSubmission(document, form, userName, sleeperData, teams);
+        
+        event.preventDefault();
+
     });
 
     // let button = document.querySelector("button");
