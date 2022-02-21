@@ -118,20 +118,31 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   let index = owners.indexOf(userIdofRostersFetch);
   console.log(index);
   let players = listedRosters.map (o => o.players);
-  console.log(players)
+  
+  let playerIndex = players[index];
+  console.log(playerIndex);
+  //fetch(`./nfl.json`).then((response) => response.json()).map ()
+  
+
+  
+
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
   ownerData.innerHTML = `` //resets innerHTML table
   //let teamData = document.getElementById("teamData");
   for (let i=0; players[index].length > i; i++){
+    let score = getRandom(50, 480);
     ownerData.innerHTML +=
     `<td>${players[index][i]}</td>
-    <td>22<td>`
+    <td>${score}<td>`
     // teamData.innerHTML +=
     // `<td>${team[i]}</td>`
     }
 }
-
+function getRandom(min, max) {
+  let value = (Math.random() * (max - min + 1)) + min;
+  return Number.parseFloat(value).toFixed(2);
+}
 // function addRosterInfo(document, playerOnRoster){
 //   let sleeperData = document.getElementById("sleeperData");
 //   let ownerData = document.getElementById("ownerData");
