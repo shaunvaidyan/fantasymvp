@@ -1,10 +1,13 @@
+import { userNameSubmission, userIdSubmission, leagueUrlSubmission, ownerSubmission } from './scriptHelper.js';
 window.addEventListener("load", function (){
 
     let sleeperData = document.getElementById("sleeperData");
     sleeperData.style.visibility = 'hidden';
     const teamData = document.getElementById('teamData');
-    teamData.style.visibility = 'hidden';
+    
     const ownerData = document.getElementById('ownerData');
+    const rosterData = document.getElementById('rosterData');
+    rosterData.style.visibility = 'hidden';
 
     let form = document.querySelector("form");
     const leagueSubmit = document.getElementById('leagueSubmit');

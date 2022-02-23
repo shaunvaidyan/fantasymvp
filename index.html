@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="css/style.css">
-    <script src="src/lib/scriptHelper.js"></script>
-    <script src="src/lib/scripts.js"></script>
+    <script type="module" src="src/lib/scripts.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,7 @@
                 
                 <table id="ownerData"><th>Owners</th><th>Team Names</th></table>
                 <table id="teamData"><th>Leagues You Are In</th></table>
-                <!-- <table id="rosterData"><th>Players</th><th>Season Total Points></th></table> -->
+                <table id="rosterData"><th>Players</th><th>Season Total Points</th></table>
             <!-- Populated data -->
         </div>  
         <div id="sleeperForm">
@@ -29,6 +28,7 @@
               <!-- <label>User Name <input type="text" name="userName" id="userName"/></label> -->
               <!-- <button id="Submit">Submit</button> -->
             <div class="formField">
+                <img src="./static/media/leagueid.gif" alt="Instructions for Obtaining League URL" /><br>
                 <label>League URL <input type="text" name="leagueUrl" id="leagueUrl"/></label>
                 <button id="leagueSubmit">Submit</button>
             </form>
