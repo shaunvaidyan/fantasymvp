@@ -1,8 +1,10 @@
 import { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters } from './fetch.js';
 
-function userNameSubmission(document, form, userName, sleeperData, teamData, teams) {
+function userNameSubmission(document, form, userName, sleeperData, teams) {
   sleeperData.style.display = "";
   document.getElementById('ownerData').style.display = "none";
+  document.getElementById('teamData').style.display = "";
+  document.getElementById('rosterData').style.display = "none";
   let userId;
   let userIdResponse = myFetchUserIdFromUserName();
   userIdResponse.then(function (result) {
@@ -12,12 +14,11 @@ function userNameSubmission(document, form, userName, sleeperData, teamData, tea
     let userIdOutput = userId.user_id;
     //console.log(userId);
     //console.log(userIdOutput);
-    userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teamData, teams);
+    userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teams);
     })
 }
-function userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teamData, teams){
-  
-  teamData.style.visibility = "visible";
+function userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teams){
+  document.getElementById('teamData').style.visibility = "visible";
   let userIdLeagues;
   let userIdLeaguesResponse = myFetchLeaguesFromUserIds(userIdOutput);
   userIdLeaguesResponse.then(function (result){
@@ -125,20 +126,31 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames){
   let rosterData = document.getElementById('rosterData');
   rosterData.innerHTML = ``;
   ownerData.innerHTML = ``;
-  teamData.innerHTML = `<th>Leagues You Are In</th>`; //resets innerHTML table
-  
+  teamData.innerHTML = `<thead>
+                        <th>Leagues You Are In</th>
+                        </thead>
+                        <tbody id="teamDataTable">
+                        </tbody>`; //resets innerHTML table
+  let teamDataTable = document.getElementById("teamDataTable");  
   for (let i=0; jsonLeagueNames.length > i; i++){
-    teamData.innerHTML +=
-    `<td><button name="${jsonLeagueNames[i]}" type="submit" value="${jsonLeagueId[i]}">${jsonLeagueNames[i]}</button></td>`
-    // teamData.innerHTML +=
-    // `<td>${team[i]}</td>`
+    let teamRows = document.createElement("tr");
+    let cell = document.createElement("td");
+    cell.innerHTML =
+    `<button name="${jsonLeagueNames[i]}" type="submit" value="${jsonLeagueId[i]}">${jsonLeagueNames[i]}</button>`
+    teamRows.appendChild(cell);
+    teamDataTable.appendChild(teamRows);
     }
+  // for (let i=0; jsonLeagueNames.length > i; i++){
+  //   teamRows +=
+  //   `<tr><td><button name="${jsonLeagueNames[i]}" type="submit" value="${jsonLeagueId[i]}">${jsonLeagueNames[i]}</button></td><tr>`
+  //   }
+    // teamDataTable.innerHTML = teamRows;
     document.getElementById("leagueUrl").value = "";
     document.getElementById("userName").value = "";
 }
 
 function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters){
-  //for (i=0; i<)
+
   console.log(userIdofRostersFetch);
   let owners = listedRosters.map (o => o.owner_id);
   let index = owners.indexOf(userIdofRostersFetch);
@@ -147,11 +159,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   
   let playerIndex = players[index];
   console.log(playerIndex);
-  //fetch(`./nfl.json`).then((response) => response.json()).map ()
   
-
-  
-
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById('teamData');
@@ -171,76 +179,23 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           <tbody id="rosterDataTable">
                           </tbody>`; //resets innerHTML table
   let rosterDataTable = document.getElementById("rosterDataTable");
-  let rosterRows = `<meta>`;
+  
   for (let i=0; players[index].length > i; i++){
     let score = getRandom(50, 480);
-    rosterRows +=
-    `<tr><td>${players[index][i]}</td><td>${score}</td></tr>`
+    let rosterRows = document.createElement("tr");
+    let cell = document.createElement("td");
+    cell.innerText = `${players[index][i]}`;
+    let cell2 = document.createElement("td");
+    cell2.innerText = `${score}`;
+    rosterRows.appendChild(cell);
+    rosterRows.appendChild(cell2);
+    rosterDataTable.appendChild(rosterRows);
     }
-  rosterDataTable.innerHTML = rosterRows;
 }
 function getRandom(min, max) {
   let value = (Math.random() * (max - min + 1)) + min;
   return Number.parseFloat(value).toFixed(2);
 }
-// function addRosterInfo(document, playerOnRoster){
-//   let sleeperData = document.getElementById("sleeperData");
-//   let ownerData = document.getElementById("ownerData");
-//   ownerData.innerHTML = `` //resets innerHTML table
-//   //let teamData = document.getElementById("teamData");
-//   for (let i=0; owner.length > i; i++){
-//     ownerData.innerHTML +=
-//     `<td><button name="${owner[i]}" type="submit" value="${owner[i]}">${owner[i]}</button></td>
-//     <td><a href="#${namedTeams[i]}" onclick="RedirectURL();return false;">${namedTeams[i]}</a></td>`
-//     // teamData.innerHTML +=
-//     // `<td>${team[i]}</td>`
-//     }
-// }
-
-
-// async function myFetchUsers(leagueId) {
-//   //let leagueId = document.querySelector("input[name=leagueUrl]").value;
-//   //console.log(`myFetch leagueId ${leagueId}`) 
-//   let teamsReturned = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/users`).then( function(response) {
-//     return response.json();
-//   });
-//   //.catch(err => console.log("Request Failed", err));
-//   return teamsReturned;
-  
-// }
-// async function myFetchUserIdFromUserName() {
-//   let userName = document.querySelector("input[name=userName]").value; 
-//   let userIdsReturned = await fetch(`https://api.sleeper.app/v1/user/${userName}`).then( function(response) {
-//     return response.json();
-//   });
-//   //.catch(err => console.log("Request Failed", err));
-//   return userIdsReturned;
-  
-// }
-
-// async function myFetchLeaguesFromUserIds(userIdOutput){
-//   let leagueIdsReturned = await fetch(`https://api.sleeper.app/v1/user/${userIdOutput}/leagues/nfl/2021`).then( function(response) {
-//     return response.json();
-//   });
-//   return leagueIdsReturned;
-// }
-
-// async function myFetchRosters(leagueIdofRostersFetch){
-//   let rostersReturned = await fetch(`https://api.sleeper.app/v1/league/${leagueIdofRostersFetch}/rosters`).then( function(response) {
-//     return response.json();
-//   });
-//   //console.log(rostersReturned)
-//   return rostersReturned;
-// }
-
-// async function myFetchPlayers() {
-//   //let selectedTeamPlayers = document.querySelector("").value; // GET ON THIS
-//   let playersReturned = await fetch(`./nfl.json`).then( function(response) {
-//       return response.json();
-//   });
-//   return playersReturned;
-// }
-
 
 function RedirectURL(){
     window.location= createDynamicURL();

@@ -4,7 +4,7 @@ window.addEventListener("load", function (){
     let sleeperData = document.getElementById("sleeperData");
     sleeperData.style.display = 'none';
     const teamData = document.getElementById('teamData');
-    
+    const teamDataTable = document.getElementById('teamDataTable');
     const ownerData = document.getElementById('ownerData');
     const rosterData = document.getElementById('rosterData');
     rosterData.style.visibility = 'hidden';
@@ -20,7 +20,7 @@ window.addEventListener("load", function (){
      
         let leagueId = document.querySelector("input[name=leagueUrl]").value;
     
-        leagueUrlSubmission(document, form, leagueId, sleeperData, teamData, teams);
+        leagueUrlSubmission(document, form, leagueId, sleeperData, teams);
         
         event.preventDefault();
 
@@ -34,7 +34,7 @@ window.addEventListener("load", function (){
         
 
         
-        userNameSubmission(document, form, userName, sleeperData, teamData, teams);
+        userNameSubmission(document, form, userName, sleeperData, teams);
         
         event.preventDefault();
 
@@ -42,11 +42,11 @@ window.addEventListener("load", function (){
 
     teamData.addEventListener("click", function(event){
 
-        let target = event.target
+        let target = event.target;
         let leagueId = target.value;
 
         
-        leagueUrlSubmission(document, form, leagueId, sleeperData, teamData, teams);
+        leagueUrlSubmission(document, form, leagueId, sleeperData, teams);
         
         event.preventDefault();
 
@@ -57,7 +57,7 @@ window.addEventListener("load", function (){
         let target = event.target;
         let leagueInfo = target.value.split(",");
 
-        ownerSubmission(document, form, leagueInfo, sleeperData, teamData, teams);
+        ownerSubmission(document, form, leagueInfo, sleeperData, teams);
     
         event.preventDefault();
 
