@@ -88,17 +88,26 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
   ownerData.style.display = "";
   rosterData.innerHTML = ``;
   rosterData.style.display = "none";
-  ownerData.innerHTML = `<th>Owners</th><th>Team Names</th>`
+  ownerData.innerHTML = `<thead>
+                          <tr>
+                            <th>Owners</th>
+                            <th>Team Names</th>
+                          </tr>
+                         </thead>
+                         <tbody id="ownerDataTable">
+                         </tbody>`
   teamData.innerHTML = ``
+  let ownerDataTable = document.getElementById("ownerDataTable");
   teamData.style.display = "none"; //resets innerHTML table
   //let teamData = document.getElementById("teamData");
+  let ownerRows = `<meta>`;
   for (let i=0; owner.length > i; i++){
-    ownerData.innerHTML +=
-    `<td><button name="${owner[i]}" type="submit" value="${[jsonUserId[i], jsonLeagueId[i]]}">${owner[i]}</button></td>
-    <td><button name="${namedTeams[i]}" type="submit" value="${[jsonUserId[i], jsonLeagueId[i]]}">${namedTeams[i]}</button></td>`
+    ownerRows +=
+    `<tr><td><button name="${owner[i]}" type="submit" value="${[jsonUserId[i], jsonLeagueId[i]]}">${owner[i]}</button></td><td><button name="${namedTeams[i]}" type="submit" value="${[jsonUserId[i], jsonLeagueId[i]]}">${namedTeams[i]}</button></td></tr>`
     // teamData.innerHTML +=
     // `<td>${team[i]}</td>`
     }
+    ownerDataTable.innerHTML = ownerRows;
     document.getElementById("leagueUrl").value = "";
     document.getElementById("userName").value = ""; // reset league URL form
   // sleeperData.innerHTML =
@@ -153,13 +162,22 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   teamData.style.display = "none";
   ownerData.innerHTML = ``;
   ownerData.style.display = "none";
-  rosterData.innerHTML = `<table id="rosterData"><th>Players</th><th>Season Point Total</th></table>`; //resets innerHTML table
+  rosterData.innerHTML = `<thead>
+                          <tr>
+                            <th>Players</th>
+                            <th>Season Total Points</th>
+                          </tr>
+                          </thead>
+                          <tbody id="rosterDataTable">
+                          </tbody>`; //resets innerHTML table
+  let rosterDataTable = document.getElementById("rosterDataTable");
+  let rosterRows = `<meta>`;
   for (let i=0; players[index].length > i; i++){
     let score = getRandom(50, 480);
-    rosterData.innerHTML +=
-    `<td>${players[index][i]}</td>
-    <td>${score}</td>`
+    rosterRows +=
+    `<tr><td>${players[index][i]}</td><td>${score}</td></tr>`
     }
+  rosterDataTable.innerHTML = rosterRows;
 }
 function getRandom(min, max) {
   let value = (Math.random() * (max - min + 1)) + min;

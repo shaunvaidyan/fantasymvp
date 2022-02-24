@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="src/lib/DataTables/datatables.min.css"/>
+    <script type="text/javascript" src="src/lib/DataTables/datatables.min.js"></script>
     <script type="module" src="src/lib/scripts.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,9 +15,31 @@
         <div id="sleeperData" data-testid="sleeperData">
             <h2>League Info</h2>
                 
-                <table data-component="datatable" id="ownerData" data-locale="en"><th>Owners</th><th>Team Names</th></table>
-                <div style="overflow-y:auto;"><table data-component="datatable" id="teamData" data-locale="en"><th>Leagues You Are In</th></table></div>
-                <div style="overflow-y:auto;"><table data-component="datatable" id="rosterData" data-locale="en"><th>Players</th><th>Season Total Points</th></table></div>
+                <table id="ownerData">
+                  <thead>
+                    <tr>
+                      <th>Owners</th>
+                      <th>Team Names</th>
+                    </tr>
+                   </thead>
+                   <tbody id="ownerDataTable">
+                   </tbody>
+                </table>
+                <table id="teamData">
+                  <thead>
+                  <th>Leagues You Are In</th>
+                  </thead>
+                </table>
+                <table id="rosterData">
+                  <thead>
+                    <tr>
+                      <th>Players</th>
+                      <th>Season Total Points</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rosterDataTable">
+                  </tbody>
+                </table>
             <!-- Populated data -->
         </div>  
         <div id="sleeperForm">
