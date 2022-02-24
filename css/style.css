@@ -1,13 +1,25 @@
-table {
-    border:1px solid black
-}
+@charset "UTF-8";
 
-th {
-    border:1px solid black
+body {
+    background-color: #efefef;
+    align-items: center;
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    margin: 0;
 }
-
-td {
-    border:1px solid black
+#headerText {
+    text-align: center;
+}
+#sleeperData {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+#sleeperForm {
+    margin: auto;
+    width: 100%;
+    text-align: center;
 }
 .css-divider {
 
@@ -18,3 +30,27 @@ td {
     border-style: solid;
     width: 100%;
 }
+a,
+a:hover,
+a:focus,
+a:active {
+    color: #333;
+    outline: medium none;
+    text-decoration: none;
+}
+table {
+    background: #fff none repeat scroll 0 0;
+    border:1px solid black;
+    margin: 10vh auto 20px;
+    padding: 20px 40px;
+}
+th {
+    border:1px solid black;
+}
+
+td {
+    border:1px solid black;
+}
+/* tr {
+    flex-wrap: wrap;
+} */

@@ -1,7 +1,8 @@
 import { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters } from './fetch.js';
 
 function userNameSubmission(document, form, userName, sleeperData, teamData, teams) {
-  sleeperData.style.visibility = "visible";
+  sleeperData.style.display = "";
+  document.getElementById('ownerData').style.display = "none";
   let userId;
   let userIdResponse = myFetchUserIdFromUserName();
   userIdResponse.then(function (result) {
@@ -15,7 +16,7 @@ function userNameSubmission(document, form, userName, sleeperData, teamData, tea
     })
 }
 function userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teamData, teams){
-  // sleeperData.style.visibility = "visible";
+  
   teamData.style.visibility = "visible";
   let userIdLeagues;
   let userIdLeaguesResponse = myFetchLeaguesFromUserIds(userIdOutput);
@@ -49,6 +50,13 @@ function leagueUrlSubmission(document, form, leagueId, sleeperData, teams) {
       let owner = listedTeams.map (o => o.display_name);
       let jsonUserId = listedTeams.map (o => o.user_id);
       let namedTeams = listedTeams.map (o => o.metadata.team_name);
+      //ERROR HANDLING NULL TEAM NAMES WHICH ARISE WHEN OWNERs DON'T SET A CUSTOM NAME
+      for (let i=0; i< namedTeams.length; i++){
+        if (namedTeams[i] === undefined){
+          namedTeams[i] = `Team ${owner[i]}`;
+        }
+      }
+
       let jsonLeagueId = listedTeams.map (o => o.league_id);
       addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLeagueId, listedTeams);
       })
@@ -77,9 +85,12 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById("teamData");
   let rosterData = document.getElementById('rosterData');
-  rosterData.innerHTML = ``
+  ownerData.style.display = "";
+  rosterData.innerHTML = ``;
+  rosterData.style.display = "none";
   ownerData.innerHTML = `<th>Owners</th><th>Team Names</th>`
-  teamData.innerHTML = `` //resets innerHTML table
+  teamData.innerHTML = ``
+  teamData.style.display = "none"; //resets innerHTML table
   //let teamData = document.getElementById("teamData");
   for (let i=0; owner.length > i; i++){
     ownerData.innerHTML +=
@@ -103,9 +114,9 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames){
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById("teamData");
   let rosterData = document.getElementById('rosterData');
-  rosterData.innerHTML = ``
-  ownerData.innerHTML = ``
-  teamData.innerHTML = `<th>Leagues You Are In</th>` //resets innerHTML table
+  rosterData.innerHTML = ``;
+  ownerData.innerHTML = ``;
+  teamData.innerHTML = `<th>Leagues You Are In</th>`; //resets innerHTML table
   
   for (let i=0; jsonLeagueNames.length > i; i++){
     teamData.innerHTML +=
@@ -136,9 +147,12 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById('teamData');
   let rosterData = document.getElementById('rosterData');
+  rosterData.style.display = "";
   rosterData.style.visibility = "visible";
   teamData.innerHTML = ``;
+  teamData.style.display = "none";
   ownerData.innerHTML = ``;
+  ownerData.style.display = "none";
   rosterData.innerHTML = `<table id="rosterData"><th>Players</th><th>Season Point Total</th></table>`; //resets innerHTML table
   for (let i=0; players[index].length > i; i++){
     let score = getRandom(50, 480);

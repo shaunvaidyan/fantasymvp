@@ -19,7 +19,7 @@ async function myFetchUserIdFromUserName() {
 }
   
 async function myFetchLeaguesFromUserIds(userIdOutput){
-    let leagueIdsReturned = await fetch(`https://api.sleeper.app/v1/user/${userIdOutput}/leagues/nfl/2022`).then( function(response) {
+    let leagueIdsReturned = await fetch(`https://api.sleeper.app/v1/user/${userIdOutput}/leagues/nfl/2021`).then( function(response) {
       return response.json();
     });
     return leagueIdsReturned;
