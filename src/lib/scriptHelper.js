@@ -109,6 +109,7 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
     // `<td>${team[i]}</td>`
     }
     ownerDataTable.innerHTML = ownerRows;
+    
     document.getElementById("leagueUrl").value = "";
     document.getElementById("userName").value = ""; // reset league URL form
   // sleeperData.innerHTML =
@@ -191,6 +192,10 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
     rosterRows.appendChild(cell2);
     rosterDataTable.appendChild(rosterRows);
     }
+    let dataTableRoster = new DataTable('#rosterData', {     // options 
+      paging: true
+    });
+    //makeBSTable(document.getElementById('rosterData'))
 }
 function getRandom(min, max) {
   let value = (Math.random() * (max - min + 1)) + min;
@@ -200,5 +205,13 @@ function getRandom(min, max) {
 function RedirectURL(){
     window.location= createDynamicURL();
 }
+
+// function makeBSTable(otable){
+//   var table = $(otable).clone(); console.log(table);
+//   table.addClass("table-hover table-bordered table-striped table");
+//   var div = $('<div class="table-responsive" />');
+//   $(otable).replaceWith(div);
+//   div.append(table);
+// }
 
 export { userNameSubmission, userIdSubmission, leagueUrlSubmission, ownerSubmission };

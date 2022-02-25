@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
     <script type="module" src="src/lib/scripts.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,9 +14,8 @@
   </head>
   <body>
     <div id="headerText"><h1>Sleeper.app FantasyMVP</h1></div>
-        <div id="sleeperData" data-testid="sleeperData">
-            <h2>League Info</h2>
-                
+      <h2>League Info</h2>
+      <div id="sleeperData" data-testid="sleeperData" class="ag-theme-balham">
                 <table id="ownerData">
                   <thead>
                     <tr>
@@ -30,7 +31,7 @@
                   <th>Leagues You Are In</th>
                   </thead>
                 </table>
-                <table id="rosterData">
+                <table id="rosterData" class="display" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th>Players</th>
