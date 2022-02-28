@@ -1,0 +1,362 @@
+{
+   "Harrison Butker": {
+      "Bye": 12,
+      "Pts*": 153,
+      "XPA": 48,
+      "XPM": 45,
+      "FGA": 38,
+      "FGM": 34,
+      "50+": 3
+   },
+   "Wil Lutz": {
+      "Bye": 9,
+      "Pts*": 150,
+      "XPA": 49,
+      "XPM": 48,
+      "FGA": 36,
+      "FGM": 32,
+      "50+": 3
+   },
+   "Justin Tucker": {
+      "Bye": 8,
+      "Pts*": 143,
+      "XPA": 59,
+      "XPM": 57,
+      "FGA": 29,
+      "FGM": 28,
+      "50+": 1
+   },
+   "Matt Gay": {
+      "Bye": 7,
+      "Pts*": 134,
+      "XPA": 48,
+      "XPM": 43,
+      "FGA": 35,
+      "FGM": 27,
+      "50+": 5
+   },
+   "Zane Gonzalez": {
+      "Bye": 12,
+      "Pts*": 131,
+      "XPA": 35,
+      "XPM": 34,
+      "FGA": 35,
+      "FGM": 31,
+      "50+": 2
+   },
+   "Dan Bailey": {
+      "Bye": 12,
+      "Pts*": 127,
+      "XPA": 44,
+      "XPM": 40,
+      "FGA": 29,
+      "FGM": 27,
+      "50+": 3
+   },
+   "Matt Prater": {
+      "Bye": 5,
+      "Pts*": 127,
+      "XPA": 36,
+      "XPM": 35,
+      "FGA": 31,
+      "FGM": 26,
+      "50+": 7
+   },
+   "Josh Lambo": {
+      "Bye": 10,
+      "Pts*": 126,
+      "XPA": 20,
+      "XPM": 19,
+      "FGA": 34,
+      "FGM": 33,
+      "50+": 4
+   },
+   "Greg Zuerlein": {
+      "Bye": 9,
+      "Pts*": 124,
+      "XPA": 42,
+      "XPM": 42,
+      "FGA": 33,
+      "FGM": 24,
+      "50+": 5
+   },
+   "Joey Slye": {
+      "Bye": 7,
+      "Pts*": 122,
+      "XPA": 35,
+      "XPM": 31,
+      "FGA": 32,
+      "FGM": 25,
+      "50+": 8
+   },
+   "Brandon McManus": {
+      "Bye": 10,
+      "Pts*": 120,
+      "XPA": 26,
+      "XPM": 25,
+      "FGA": 34,
+      "FGM": 29,
+      "50+": 4
+   },
+   "Chris Boswell": {
+      "Bye": 7,
+      "Pts*": 117,
+      "XPA": 28,
+      "XPM": 28,
+      "FGA": 31,
+      "FGM": 29,
+      "50+": 1
+   },
+   "Jason Myers": {
+      "Bye": 11,
+      "Pts*": 113,
+      "XPA": 44,
+      "XPM": 40,
+      "FGA": 28,
+      "FGM": 23,
+      "50+": 2
+   },
+   "Jason Sanders": {
+      "Bye": 5,
+      "Pts*": 111,
+      "XPA": 30,
+      "XPM": 29,
+      "FGA": 30,
+      "FGM": 23,
+      "50+": 3
+   },
+   "Robbie Gould": {
+      "Bye": 4,
+      "Pts*": 110,
+      "XPA": 42,
+      "XPM": 41,
+      "FGA": 31,
+      "FGM": 23,
+      "50+": 0
+   },
+   "Mason Crosby": {
+      "Bye": 11,
+      "Pts*": 108,
+      "XPA": 41,
+      "XPM": 40,
+      "FGA": 24,
+      "FGM": 22,
+      "50+": 1
+   },
+   "Randy Bullock": {
+      "Bye": 9,
+      "Pts*": 107,
+      "XPA": 25,
+      "XPM": 24,
+      "FGA": 31,
+      "FGM": 27,
+      "50+": 1
+   },
+   "Austin Seibert": {
+      "Bye": 7,
+      "Pts*": 107,
+      "XPA": 35,
+      "XPM": 30,
+      "FGA": 29,
+      "FGM": 25,
+      "50+": 1
+   },
+   "Ka'imi Fairbairn": {
+      "Bye": 10,
+      "Pts*": 106,
+      "XPA": 45,
+      "XPM": 40,
+      "FGA": 25,
+      "FGM": 20,
+      "50+": 3
+   },
+   "Brett Maher": {
+      "Bye": 8,
+      "Pts*": 104,
+      "XPA": 36,
+      "XPM": 36,
+      "FGA": 30,
+      "FGM": 20,
+      "50+": 4
+   },
+   "Jake Elliott": {
+      "Bye": 10,
+      "Pts*": 103,
+      "XPA": 37,
+      "XPM": 35,
+      "FGA": 26,
+      "FGM": 22,
+      "50+": 2
+   },
+   "Dustin Hopkins": {
+      "Bye": 10,
+      "Pts*": 100,
+      "XPA": 22,
+      "XPM": 21,
+      "FGA": 30,
+      "FGM": 25,
+      "50+": 2
+   },
+   "Eddy Pineiro": {
+      "Bye": 6,
+      "Pts*": 100,
+      "XPA": 29,
+      "XPM": 27,
+      "FGA": 28,
+      "FGM": 23,
+      "50+": 2
+   },
+   "Stephen Hauschka": {
+      "Bye": 6,
+      "Pts*": 98,
+      "XPA": 32,
+      "XPM": 30,
+      "FGA": 28,
+      "FGM": 22,
+      "50+": 1
+   },
+   "Daniel Carlson": {
+      "Bye": 6,
+      "Pts*": 91,
+      "XPA": 36,
+      "XPM": 34,
+      "FGA": 26,
+      "FGM": 19,
+      "50+": 0
+   },
+   "Sam Ficken": {
+      "Bye": 11,
+      "Pts*": 86,
+      "XPA": 26,
+      "XPM": 23,
+      "FGA": 27,
+      "FGM": 19,
+      "50+": 3
+   },
+   "Younghoe Koo": {
+      "Bye": 10,
+      "Pts*": 86,
+      "XPA": 16,
+      "XPM": 15,
+      "FGA": 26,
+      "FGM": 23,
+      "50+": 1
+   },
+   "Chase McLaughlin": {
+      "Bye": 6,
+      "Pts*": 86,
+      "XPA": 26,
+      "XPM": 26,
+      "FGA": 23,
+      "FGM": 18,
+      "50+": 3
+   },
+   "Adam Vinatieri": {
+      "Bye": 6,
+      "Pts*": 77,
+      "XPA": 28,
+      "XPM": 22,
+      "FGA": 25,
+      "FGM": 17,
+      "50+": 2
+   },
+   "Aldrick Rosas": {
+      "Bye": 11,
+      "Pts*": 71,
+      "XPA": 39,
+      "XPM": 35,
+      "FGA": 17,
+      "FGM": 12,
+      "50+": 0
+   },
+   "Michael Badgley": {
+      "Bye": 12,
+      "Pts*": 58,
+      "XPA": 19,
+      "XPM": 19,
+      "FGA": 16,
+      "FGM": 13,
+      "50+": 0
+   },
+   "Nick Folk": {
+      "Bye": 10,
+      "Pts*": 56,
+      "XPA": 12,
+      "XPM": 12,
+      "FGA": 17,
+      "FGM": 14,
+      "50+": 1
+   },
+   "Kai Forbath": {
+      "Bye": 8,
+      "Pts*": 46,
+      "XPA": 12,
+      "XPM": 11,
+      "FGA": 11,
+      "FGM": 11,
+      "50+": 1
+   },
+   "Matt Bryant": {
+      "Bye": 9,
+      "Pts*": 45,
+      "XPA": 15,
+      "XPM": 14,
+      "FGA": 14,
+      "FGM": 9,
+      "50+": 2
+   },
+   "Stephen Gostkowski": {
+      "Bye": 10,
+      "Pts*": 32,
+      "XPA": 15,
+      "XPM": 11,
+      "FGA": 8,
+      "FGM": 7,
+      "50+": 0
+   },
+   "Mike Nugent": {
+      "Bye": 10,
+      "Pts*": 30,
+      "XPA": 16,
+      "XPM": 15,
+      "FGA": 8,
+      "FGM": 5,
+      "50+": 0
+   },
+   "Ryan Succop": {
+      "Bye": 11,
+      "Pts*": 27,
+      "XPA": 25,
+      "XPM": 24,
+      "FGA": 6,
+      "FGM": 1,
+      "50+": 0
+   },
+   "Cairo Santos": {
+      "Bye": 11,
+      "Pts*": 26,
+      "XPA": 12,
+      "XPM": 12,
+      "FGA": 9,
+      "FGM": 4,
+      "50+": 1
+   },
+   "Cody Parkey": {
+      "Bye": 11,
+      "Pts*": 16,
+      "XPA": 6,
+      "XPM": 5,
+      "FGA": 3,
+      "FGM": 3,
+      "50+": 1
+   },
+   "Greg Joseph": {
+      "Bye": 7,
+      "Pts*": 9,
+      "XPA": 9,
+      "XPM": 9,
+      "FGA": 0,
+      "FGM": 0,
+      "50+": 0
+   }
+}

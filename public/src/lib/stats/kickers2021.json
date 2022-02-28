@@ -1,0 +1,425 @@
+{
+   "Daniel Carlson": {
+      "Bye": 8,
+      "Pts*": 162,
+      "XPA": 33,
+      "XPM": 30,
+      "FGA": 43,
+      "FGM": 40,
+      "50+": 6
+   },
+   "Nick Folk": {
+      "Bye": 14,
+      "Pts*": 160,
+      "XPA": 47,
+      "XPM": 42,
+      "FGA": 39,
+      "FGM": 36,
+      "50+": 5
+   },
+   "Matt Gay": {
+      "Bye": 11,
+      "Pts*": 152,
+      "XPA": 49,
+      "XPM": 48,
+      "FGA": 34,
+      "FGM": 32,
+      "50+": 4
+   },
+   "Chris Boswell": {
+      "Bye": 7,
+      "Pts*": 151,
+      "XPA": 29,
+      "XPM": 27,
+      "FGA": 40,
+      "FGM": 36,
+      "50+": 8
+   },
+   "Matt Prater": {
+      "Bye": 12,
+      "Pts*": 151,
+      "XPA": 49,
+      "XPM": 47,
+      "FGA": 37,
+      "FGM": 30,
+      "50+": 7
+   },
+   "Greg Joseph": {
+      "Bye": 7,
+      "Pts*": 149,
+      "XPA": 40,
+      "XPM": 36,
+      "FGA": 38,
+      "FGM": 33,
+      "50+": 7
+   },
+   "Justin Tucker": {
+      "Bye": 8,
+      "Pts*": 149,
+      "XPA": 32,
+      "XPM": 32,
+      "FGA": 37,
+      "FGM": 35,
+      "50+": 6
+   },
+   "Evan McPherson": {
+      "Bye": 10,
+      "Pts*": 148,
+      "XPA": 48,
+      "XPM": 46,
+      "FGA": 33,
+      "FGM": 28,
+      "50+": 9
+   },
+   "Jake Elliott": {
+      "Bye": 14,
+      "Pts*": 140,
+      "XPA": 44,
+      "XPM": 44,
+      "FGA": 33,
+      "FGM": 30,
+      "50+": 3
+   },
+   "Tyler Bass": {
+      "Bye": 7,
+      "Pts*": 139,
+      "XPA": 51,
+      "XPM": 51,
+      "FGA": 32,
+      "FGM": 28,
+      "50+": 2
+   },
+   "Harrison Butker": {
+      "Bye": 12,
+      "Pts*": 136,
+      "XPA": 49,
+      "XPM": 47,
+      "FGA": 28,
+      "FGM": 25,
+      "50+": 7
+   },
+   "Dustin Hopkins": {
+      "Bye": 7,
+      "Pts*": 134,
+      "XPA": 44,
+      "XPM": 40,
+      "FGA": 34,
+      "FGM": 30,
+      "50+": 2
+   },
+   "Greg Zuerlein": {
+      "Bye": 7,
+      "Pts*": 133,
+      "XPA": 48,
+      "XPM": 42,
+      "FGA": 35,
+      "FGM": 29,
+      "50+": 2
+   },
+   "Ryan Succop": {
+      "Bye": 9,
+      "Pts*": 131,
+      "XPA": 59,
+      "XPM": 56,
+      "FGA": 30,
+      "FGM": 25,
+      "50+": 0
+   },
+   "Mason Crosby": {
+      "Bye": 13,
+      "Pts*": 130,
+      "XPA": 51,
+      "XPM": 49,
+      "FGA": 34,
+      "FGM": 25,
+      "50+": 3
+   },
+   "Randy Bullock": {
+      "Bye": 13,
+      "Pts*": 122,
+      "XPA": 45,
+      "XPM": 42,
+      "FGA": 31,
+      "FGM": 26,
+      "50+": 1
+   },
+   "Brandon McManus": {
+      "Bye": 11,
+      "Pts*": 121,
+      "XPA": 34,
+      "XPM": 33,
+      "FGA": 31,
+      "FGM": 26,
+      "50+": 5
+   },
+   "Younghoe Koo": {
+      "Bye": 6,
+      "Pts*": 119,
+      "XPA": 30,
+      "XPM": 30,
+      "FGA": 29,
+      "FGM": 27,
+      "50+": 4
+   },
+   "Graham Gano": {
+      "Bye": 10,
+      "Pts*": 118,
+      "XPA": 17,
+      "XPM": 17,
+      "FGA": 33,
+      "FGM": 29,
+      "50+": 7
+   },
+   "Jason Sanders": {
+      "Bye": 14,
+      "Pts*": 107,
+      "XPA": 35,
+      "XPM": 34,
+      "FGA": 31,
+      "FGM": 23,
+      "50+": 2
+   },
+   "Robbie Gould": {
+      "Bye": 6,
+      "Pts*": 105,
+      "XPA": 40,
+      "XPM": 39,
+      "FGA": 23,
+      "FGM": 20,
+      "50+": 3
+   },
+   "Cairo Santos": {
+      "Bye": 10,
+      "Pts*": 105,
+      "XPA": 28,
+      "XPM": 27,
+      "FGA": 30,
+      "FGM": 26,
+      "50+": 0
+   },
+   "Jason Myers": {
+      "Bye": 9,
+      "Pts*": 101,
+      "XPA": 47,
+      "XPM": 44,
+      "FGA": 23,
+      "FGM": 17,
+      "50+": 3
+   },
+   "Joey Slye": {
+      "Bye": 9,
+      "Pts*": 95,
+      "XPA": 22,
+      "XPM": 18,
+      "FGA": 25,
+      "FGM": 23,
+      "50+": 4
+   },
+   "Michael Badgley": {
+      "Bye": 14,
+      "Pts*": 94,
+      "XPA": 41,
+      "XPM": 40,
+      "FGA": 22,
+      "FGM": 18,
+      "50+": 0
+   },
+   "Chase McLaughlin": {
+      "Bye": 13,
+      "Pts*": 89,
+      "XPA": 37,
+      "XPM": 36,
+      "FGA": 21,
+      "FGM": 15,
+      "50+": 4
+   },
+   "Zane Gonzalez": {
+      "Bye": 13,
+      "Pts*": 88,
+      "XPA": 23,
+      "XPM": 22,
+      "FGA": 22,
+      "FGM": 20,
+      "50+": 3
+   },
+   "Matthew Wright": {
+      "Bye": 7,
+      "Pts*": 84,
+      "XPA": 15,
+      "XPM": 13,
+      "FGA": 24,
+      "FGM": 21,
+      "50+": 4
+   },
+   "Ka'imi Fairbairn": {
+      "Bye": 10,
+      "Pts*": 66,
+      "XPA": 16,
+      "XPM": 13,
+      "FGA": 19,
+      "FGM": 15,
+      "50+": 4
+   },
+   "Brett Maher": {
+      "Bye": 6,
+      "Pts*": 58,
+      "XPA": 12,
+      "XPM": 10,
+      "FGA": 18,
+      "FGM": 16,
+      "50+": 0
+   },
+   "Riley Patterson": {
+      "Bye": 9,
+      "Pts*": 55,
+      "XPA": 16,
+      "XPM": 16,
+      "FGA": 14,
+      "FGM": 13,
+      "50+": 0
+   },
+   "Matt Ammendola": {
+      "Bye": 6,
+      "Pts*": 53,
+      "XPA": 15,
+      "XPM": 14,
+      "FGA": 19,
+      "FGM": 13,
+      "50+": 0
+   },
+   "Brian Johnson": {
+      "Bye": 9,
+      "Pts*": 41,
+      "XPA": 13,
+      "XPM": 9,
+      "FGA": 10,
+      "FGM": 10,
+      "50+": 1
+   },
+   "Rodrigo Blankenship": {
+      "Bye": 14,
+      "Pts*": 40,
+      "XPA": 8,
+      "XPM": 7,
+      "FGA": 14,
+      "FGM": 11,
+      "50+": 0
+   },
+   "Austin Seibert": {
+      "Bye": 9,
+      "Pts*": 37,
+      "XPA": 5,
+      "XPM": 5,
+      "FGA": 12,
+      "FGM": 10,
+      "50+": 1
+   },
+   "Eddy Pineiro": {
+      "Bye": 6,
+      "Pts*": 35,
+      "XPA": 10,
+      "XPM": 9,
+      "FGA": 8,
+      "FGM": 8,
+      "50+": 1
+   },
+   "Tristan Vizcaino": {
+      "Bye": 7,
+      "Pts*": 28,
+      "XPA": 15,
+      "XPM": 10,
+      "FGA": 7,
+      "FGM": 6,
+      "50+": 0
+   },
+   "Lirim Hajrullahu": {
+      "Bye": 13,
+      "Pts*": 20,
+      "XPA": 8,
+      "XPM": 8,
+      "FGA": 5,
+      "FGM": 4,
+      "50+": 0
+   },
+   "Aldrick Rosas": {
+      "Bye": 9,
+      "Pts*": 20,
+      "XPA": 14,
+      "XPM": 14,
+      "FGA": 5,
+      "FGM": 2,
+      "50+": 0
+   },
+   "Ryan Santoso": {
+      "Bye": 11,
+      "Pts*": 18,
+      "XPA": 8,
+      "XPM": 6,
+      "FGA": 5,
+      "FGM": 4,
+      "50+": 0
+   },
+   "Elliott Fry": {
+      "Bye": 10,
+      "Pts*": 16,
+      "XPA": 5,
+      "XPM": 4,
+      "FGA": 5,
+      "FGM": 4,
+      "50+": 0
+   },
+   "Dominik Eberle": {
+      "Bye": 13,
+      "Pts*": 13,
+      "XPA": 5,
+      "XPM": 5,
+      "FGA": 3,
+      "FGM": 2,
+      "50+": 1
+   },
+   "Chris Blewitt": {
+      "Bye": 13,
+      "Pts*": 10,
+      "XPA": 2,
+      "XPM": 2,
+      "FGA": 5,
+      "FGM": 2,
+      "50+": 1
+   },
+   "Josh Lambo": {
+      "Bye": 7,
+      "Pts*": 5,
+      "XPA": 7,
+      "XPM": 5,
+      "FGA": 3,
+      "FGM": 0,
+      "50+": 0
+   },
+   "Chris Naggar": {
+      "Bye": 13,
+      "Pts*": 4,
+      "XPA": 2,
+      "XPM": 1,
+      "FGA": 1,
+      "FGM": 1,
+      "50+": 0
+   },
+   "Cody Parkey": {
+      "Bye": 6,
+      "Pts*": 3,
+      "XPA": 5,
+      "XPM": 3,
+      "FGA": 0,
+      "FGM": 0,
+      "50+": 0
+   },
+   "Alex Kessman": {
+      "Bye": 13,
+      "Pts*": 0,
+      "XPA": 2,
+      "XPM": 0,
+      "FGA": 0,
+      "FGM": 0,
+      "50+": 0
+   }
+}
