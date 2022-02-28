@@ -181,7 +181,7 @@ function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetc
         playerArray.push((listOfPlayers[playerIndex[i]].full_name))
       }
     }
-    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray);
+    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray, playerIndex);
   });
 }
 function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray){
@@ -193,7 +193,7 @@ function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFe
   })
 
 }
-function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray){
+function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray, playerIndex){
   
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -207,6 +207,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   ownerData.style.display = "none";
   rosterData.innerHTML = `<thead>
                           <tr>
+                            <th>Avatars</th>
                             <th>Players</th>
                             <th>Season Total Points</th>
                           </tr>
@@ -218,10 +219,13 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   for (let i=0; playerArray.length > i; i++){
     let score = getRandom(50, 480);
     let rosterRows = document.createElement("tr");
+    let cell3 = document.createElement("td");
+    cell3.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
     let cell = document.createElement("td");
     cell.innerText = `${playerArray[i]}`;
     let cell2 = document.createElement("td");
     cell2.innerText = `${score}`;
+    rosterRows.appendChild(cell3);
     rosterRows.appendChild(cell);
     rosterRows.appendChild(cell2);
     rosterDataTable.appendChild(rosterRows);
