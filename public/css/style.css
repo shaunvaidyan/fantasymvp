@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
 body {
     background-color: #171923;
     align-items: center;
@@ -9,8 +16,10 @@ body {
     margin: 0;
 }
 
-#headerText {
+h1 {
     text-align: center;
+    font-size: 30px;
+    color: #5b6574;
 }
 
 #sleeperData {
@@ -20,14 +29,25 @@ body {
 }
 
 h2 {
+    /* text-align: center;
+    padding: 20px 0; */
     text-align: center;
-    padding: 20px 0;
+    color: #5b6574;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #4d4d4f;
 }
 #sleeperForm {
-    border-color: rgb(58, 60, 68);
+    /* border-color: rgb(58, 60, 68);
     margin: auto;
-    width: 70%;
+    width: 70%; */
     text-align: center;
+    width: 500px;
+    background-color: #1a1919;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    margin: 100px auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 #rosterData {
     margin: auto;
@@ -52,7 +72,7 @@ a:active {
     text-decoration: none;
 }
 table {
-    background: #fff none repeat scroll 0 0;
+    background: #1a1919 none repeat scroll 0 0;
     border:1px solid black;
     margin: 10vh auto 20px;
     padding: 20px 40px;
@@ -62,9 +82,38 @@ th {
 }
 
 td {
+    background: #1a1919 none repeat scroll 0 0;
     border:1px solid black;
+    margin: 10vh auto 20px;
 }
-
+button {
+    width: 100px;
+    padding: 3px;
+    margin-left: 20px;
+    background-color: #2d2f37;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+.sleeperTables button {
+    width: 100%;
+    padding: 15px;
+    background-color: #2d2f37;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+    margin-left: 0px;
+}
+#rosterData_length {
+    color: #fafafa;
+}
+#rosterData_length {
+    color: #fafafa;
+}
 /* tr {
     flex-wrap: wrap;
 } */

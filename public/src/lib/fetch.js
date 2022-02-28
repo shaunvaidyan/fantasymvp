@@ -33,11 +33,14 @@ async function myFetchRosters(leagueIdofRostersFetch){
     return rostersReturned;
 }
   
-// async function myFetchPlayers() {
-//     //let selectedTeamPlayers = document.querySelector("").value; // GET ON THIS
-//     let playersReturned = await fetch(`./nfl.json`).then( function(response) {
-//         return response.json();
-//     });
-//     return playersReturned;
-// }
-export { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters };
+async function myFetchNflJson() {
+    //let selectedTeamPlayers = document.querySelector("").value; // GET ON THIS
+    let nflPlayersReturned = await fetch(`./stats/nfl.json`).then(res => res.json());
+    return nflPlayersReturned;
+}
+
+async function myFetchSeasonScores(seasonYear){
+  let seasonScoresReturned = await fetch(`./stats/2021.json`).then(res => res.json());
+  return seasonScoresReturned;
+}
+export { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters, myFetchNflJson, myFetchSeasonScores };

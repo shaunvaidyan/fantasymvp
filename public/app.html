@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
     <script type="module" src="src/lib/scripts.js"></script>
     <meta charset="UTF-8" />
@@ -13,9 +14,9 @@
 
   </head>
   <body>
-    <div id="headerText"><h1>Sleeper.app FantasyMVP</h1></div>
-      <h2>League Info</h2>
-      <div id="sleeperData" data-testid="sleeperData" class="ag-theme-balham">
+    <div id="headerText"><h1>FantasyMVP</h1></div>
+      <h2>Sleeper.app League Info</h2>
+      <div id="sleeperData" data-testid="sleeperData" class="sleeperTables">
                 <table id="ownerData">
                   <thead>
                     <tr>
@@ -46,13 +47,19 @@
         <div id="sleeperForm">
           <form data-sleeperFetch="testForm">
             <div class="formField">
-              <label>User Name <input type="text" name="userName" id="userName"/></label>
+              <label for="userName">
+                <i class="fas fa-user"></i>
+              </label>
+                <input type="text" placeholder="Sleeper.app Username" name="userName" id="userName"/>
                 <button id="userNameSubmit">Submit</button>
               <div class="css-1lads1q">
                 <hr aria-orientation="horizontal" class="divider css-divider">OR<hr aria-orientation="horizontal" class="divider css-divider"></div>
             <div class="formField">
                 <img src="./static/media/leagueid.gif" alt="Instructions for Obtaining League URL" /><br>
-                <label>League URL <input type="text" name="leagueUrl" id="leagueUrl"/></label>
+                <label for="leagueUrl">
+                  <i class="fas fa-football-ball"></i>
+                </label>
+                  <input type="text" placeholder="Sleeper.app League URL" name="leagueUrl" id="leagueUrl"/>
                 <button id="leagueSubmit">Submit</button>
             </form>
         </div>

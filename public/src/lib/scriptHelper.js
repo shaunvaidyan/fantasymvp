@@ -1,4 +1,4 @@
-import { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters } from './fetch.js';
+import { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters, myFetchNflJson, myFetchSeasonScores } from './fetch.js';
 
 function userNameSubmission(document, form, userName, sleeperData, teams) {
   sleeperData.style.display = "";
@@ -26,7 +26,7 @@ function userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperD
   }).then(function () {
     let jsonLeagueId = userIdLeagues.map (o => o.league_id);
     let jsonLeagueNames = userIdLeagues.map (o => o.name);
-    //console.log(jsonLeagueNames);
+    console.log(jsonLeagueId);
     addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames);
     })
 }
@@ -46,7 +46,7 @@ function leagueUrlSubmission(document, form, leagueId, sleeperData, teams) {
     listedTeams = result;
 
     }).then(function () {
-      //console.log(listedTeams);
+      console.log(listedTeams);
         
       let owner = listedTeams.map (o => o.display_name);
       let jsonUserId = listedTeams.map (o => o.user_id);
@@ -73,7 +73,7 @@ function ownerSubmission(document, form, leagueInfo, sleeperData, teamData, team
     listedRosters = result;
   }).then(function () {
     console.log(listedRosters);
-    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters);
+    processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters);
   //let leagueId = leagueUrl.value;
 
   //reset visual elements of form
@@ -101,6 +101,19 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
   let ownerDataTable = document.getElementById("ownerDataTable");
   teamData.style.display = "none"; //resets innerHTML table
   //let teamData = document.getElementById("teamData");
+  let listedRosterRecords;
+  let processedRecords;
+  let fetchRecord = myFetchRosters(jsonLeagueId[0]);
+  fetchRecord.then(function (result) {
+    listedRosterRecords = result;
+    //console.log(listedRosterRecords);
+  }).then(function () {
+    listedRosterRecords.map (o => o.metadata.record);
+    let recordRaw = listedRosterRecords.map (o => o.metadata.record);
+    console.log(recordRaw);
+  })
+  
+
   let ownerRows = `<meta>`;
   for (let i=0; owner.length > i; i++){
     ownerRows +=
@@ -149,17 +162,38 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames){
     document.getElementById("leagueUrl").value = "";
     document.getElementById("userName").value = "";
 }
-
-function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters){
-
-  console.log(userIdofRostersFetch);
+function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters){
   let owners = listedRosters.map (o => o.owner_id);
   let index = owners.indexOf(userIdofRostersFetch);
-  console.log(index);
   let players = listedRosters.map (o => o.players);
   
   let playerIndex = players[index];
-  console.log(playerIndex);
+  let listOfPlayers;
+  let nflPlayersResponse = myFetchNflJson();
+  let playerArray = [];
+  nflPlayersResponse.then(function (result) {
+    listOfPlayers = result;
+  }).then(function () {
+    for (let i=0; i < playerIndex.length ; i++){
+      if (!/[^a-zA-Z]/.test(playerIndex[i])){
+        playerArray.push(playerIndex[i])
+      } else {
+        playerArray.push((listOfPlayers[playerIndex[i]].full_name))
+      }
+    }
+    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray);
+  });
+}
+function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray){
+  let seasonYear = 2021;
+  let seasonScoresResponse = myFetchSeasonScores(seasonYear);
+  listSeasonScores;
+  seasonScoresResponse.then(function (result){
+    listSeasonScores = result;
+  })
+
+}
+function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray){
   
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -181,11 +215,11 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           </tbody>`; //resets innerHTML table
   let rosterDataTable = document.getElementById("rosterDataTable");
   
-  for (let i=0; players[index].length > i; i++){
+  for (let i=0; playerArray.length > i; i++){
     let score = getRandom(50, 480);
     let rosterRows = document.createElement("tr");
     let cell = document.createElement("td");
-    cell.innerText = `${players[index][i]}`;
+    cell.innerText = `${playerArray[i]}`;
     let cell2 = document.createElement("td");
     cell2.innerText = `${score}`;
     rosterRows.appendChild(cell);
@@ -193,7 +227,8 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
     rosterDataTable.appendChild(rosterRows);
     }
     let dataTableRoster = new DataTable('#rosterData', {     // options 
-      paging: true
+      paging: true,
+      order: [ 1, 'desc' ]
     });
     //makeBSTable(document.getElementById('rosterData'))
 }
