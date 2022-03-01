@@ -1,7 +1,7 @@
 # FantasyMVP 
 Fantasy Football Season in Review
 
-View Insights into your team's performance over the course of the NFL season!
+View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API!
 
 [Sleeper API Documentation](https://docs.sleeper.app)
 
