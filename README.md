@@ -1,12 +1,19 @@
-# fantasymvp 
-Fantasy Football Season in Review Generator
+# FantasyMVP 
+Fantasy Football Season in Review
 
 View Insights into your team's performance over the course of the NFL season!
 
 [Sleeper API Documentation](https://docs.sleeper.app)
 
 
-To Do:
-NodeJS backend for requesting and storing data  
+Once you login to FantasyMVP, it shows you insights about the players on your selected roster in your Sleeper.app League. You can view their avatars and see the points they scored over the course of the 2021 season.
 
-Frontend for showing views of data arranged in tables
+## Technologies:  
+### Backend  
+NodeJS  
+Express.js  
+MySQL
+### Frontend
+Javascript  
+HTML  
+CSS
