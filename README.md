@@ -1,5 +1,5 @@
 # FantasyMVP 
-Fantasy Football Season in Review
+### Fantasy Football Season in Review
 
 View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API!
 
