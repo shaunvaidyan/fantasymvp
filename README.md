@@ -1,6 +1,6 @@
 # <div align="center">FantasyMVP</div>  
 
-### Fantasy Football Season in Review
+### # <div align="center">Fantasy Football Season in Review</div>
 
 View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API!
 
