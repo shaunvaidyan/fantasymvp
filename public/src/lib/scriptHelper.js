@@ -86,6 +86,7 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById("teamData");
   let rosterData = document.getElementById('rosterData');
+  sleeperData.style.display = "";
   ownerData.style.display = "";
   rosterData.innerHTML = ``;
   rosterData.style.display = "none";
@@ -113,7 +114,6 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
     console.log(recordRaw);
   })
   
-
   let ownerRows = `<meta>`;
   for (let i=0; owner.length > i; i++){
     ownerRows +=
@@ -219,20 +219,23 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   for (let i=0; playerArray.length > i; i++){
     let score = getRandom(50, 480);
     let rosterRows = document.createElement("tr");
-    let cell3 = document.createElement("td");
-    cell3.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
-    let cell = document.createElement("td");
-    cell.innerText = `${playerArray[i]}`;
-    let cell2 = document.createElement("td");
-    cell2.innerText = `${score}`;
-    rosterRows.appendChild(cell3);
-    rosterRows.appendChild(cell);
-    rosterRows.appendChild(cell2);
+    let cellAvatar = document.createElement("td");
+    cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
+    let cellPlayer = document.createElement("td");
+    cellPlayer.innerText = `${playerArray[i]}`;
+    let cellScore = document.createElement("td");
+    cellScore.innerText = `${score}`;
+    rosterRows.appendChild(cellAvatar);
+    rosterRows.appendChild(cellPlayer);
+    rosterRows.appendChild(cellScore);
     rosterDataTable.appendChild(rosterRows);
     }
     let dataTableRoster = new DataTable('#rosterData', {     // options 
       paging: true,
-      order: [ 1, 'desc' ]
+      columnDefs: [
+        { orderable: false, targets: 0 }
+      ],
+      order: [ 2, 'desc' ]
     });
     //makeBSTable(document.getElementById('rosterData'))
 }
