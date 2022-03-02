@@ -194,15 +194,30 @@ function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetc
     addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex);
   });
 }
+
+const setValueToField = (fields, value) => {
+  const reducer = (acc, item, index, arr) => ({ [item]: index + 1 < arr.length ? acc : value });
+  return fields.reduceRight(reducer, {});
+};
+
 // function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray)
-function processSeasonScores(){
+function processSeasonScores(playerNamesArray){
   let seasonYear = 2021;
   let seasonScoresResponse = myFetchSeasonScores(seasonYear);
   let listSeasonScores;
+  
   seasonScoresResponse.then(function (result){
     listSeasonScores = result;
   }).then(function () {
-    console.log(listSeasonScores)
+    let playerObject = {};
+    for (let i=0; i < playerNamesArray.length; i++){
+      // if(listSeasonScores[playerNamesArray[i]] === undefined){
+        
+      // }
+      playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],listSeasonScores[playerNamesArray[i]]);
+      // playerObject[playerNamesArray[i]] = (listSeasonScores[playerNamesArray[i]])
+    }
+    console.log(playerObject)
   })
 
 }
@@ -231,7 +246,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           <tbody id="rosterDataTable">
                           </tbody>`; //resets innerHTML table
   let rosterDataTable = document.getElementById("rosterDataTable");
-  processSeasonScores(); // process scores
+  processSeasonScores(playerNamesArray); // process scores
   for (let i=0; playerNamesArray.length > i; i++){
     let score = getRandom(50, 480);
     let rosterRows = document.createElement("tr");
