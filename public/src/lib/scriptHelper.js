@@ -231,7 +231,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           <tbody id="rosterDataTable">
                           </tbody>`; //resets innerHTML table
   let rosterDataTable = document.getElementById("rosterDataTable");
-  processSeasonScores();
+  processSeasonScores(); // process scores
   for (let i=0; playerNamesArray.length > i; i++){
     let score = getRandom(50, 480);
     let rosterRows = document.createElement("tr");
