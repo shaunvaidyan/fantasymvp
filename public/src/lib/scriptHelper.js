@@ -5,6 +5,9 @@ function userNameSubmission(document, form, userName, sleeperData, teams) {
   document.getElementById('ownerData').style.display = "none";
   document.getElementById('teamData').style.display = "";
   document.getElementById('rosterData').style.display = "none";
+  if ((document.getElementById('rosterData_wrapper')) !== null){
+    document.getElementById('rosterData_wrapper').style.display = "none";
+  }
   let userId;
   let userIdResponse = myFetchUserIdFromUserName();
   userIdResponse.then(function (result) {
@@ -90,6 +93,9 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
   ownerData.style.display = "";
   rosterData.innerHTML = ``;
   rosterData.style.display = "none";
+  if ((document.getElementById('rosterData_wrapper')) !== null){
+    document.getElementById('rosterData_wrapper').style.display = "none";
+  }
   ownerData.innerHTML = `<thead>
                           <tr>
                             <th>Owners</th>
@@ -200,7 +206,9 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   let teamData = document.getElementById('teamData');
   let rosterData = document.getElementById('rosterData');
   rosterData.style.display = "";
+  document.getElementById('rosterData').style.display = "";
   rosterData.style.visibility = "visible";
+  document.getElementById('rosterData').style.visibility = "visible";
   teamData.innerHTML = ``;
   teamData.style.display = "none";
   ownerData.innerHTML = ``;
@@ -231,6 +239,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
     rosterDataTable.appendChild(rosterRows);
     }
     let dataTableRoster = new DataTable('#rosterData', {     // options 
+      destroy: true,
       paging: true,
       columnDefs: [
         { orderable: false, targets: 0 }
