@@ -40,7 +40,7 @@ async function myFetchNflJson() {
 }
 
 async function myFetchSeasonScores(seasonYear){
-  let seasonScoresReturned = await fetch(`./stats/2021.json`).then(res => res.json());
+  let seasonScoresReturned = await fetch(`./stats/${seasonYear}.json`).then(res => res.json());
   return seasonScoresReturned;
 }
 export { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters, myFetchNflJson, myFetchSeasonScores };

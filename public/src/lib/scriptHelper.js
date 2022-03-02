@@ -176,30 +176,37 @@ function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetc
   let playerIndex = players[index];
   let listOfPlayers;
   let nflPlayersResponse = myFetchNflJson();
-  let playerArray = [];
+  let playerNamesArray = [];
+  let playerPositionsArray = [];
   nflPlayersResponse.then(function (result) {
     listOfPlayers = result;
   }).then(function () {
     for (let i=0; i < playerIndex.length ; i++){
       if (!/[^a-zA-Z]/.test(playerIndex[i])){
-        playerArray.push(playerIndex[i])
+        playerNamesArray.push(playerIndex[i])
+        playerPositionsArray.push("DEF")
       } else {
-        playerArray.push((listOfPlayers[playerIndex[i]].full_name))
+        playerNamesArray.push((listOfPlayers[playerIndex[i]].full_name))
+        playerPositionsArray.push((listOfPlayers[playerIndex[i]].position))
       }
+
     }
-    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray, playerIndex);
+    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex);
   });
 }
-function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray){
+// function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray)
+function processSeasonScores(){
   let seasonYear = 2021;
   let seasonScoresResponse = myFetchSeasonScores(seasonYear);
-  listSeasonScores;
+  let listSeasonScores;
   seasonScoresResponse.then(function (result){
     listSeasonScores = result;
+  }).then(function () {
+    console.log(listSeasonScores)
   })
 
 }
-function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerArray, playerIndex){
+function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex){
   
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -216,6 +223,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   rosterData.innerHTML = `<thead>
                           <tr>
                             <th>Avatars</th>
+                            <th>Position</th>
                             <th>Players</th>
                             <th>Season Total Points</th>
                           </tr>
@@ -223,17 +231,20 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           <tbody id="rosterDataTable">
                           </tbody>`; //resets innerHTML table
   let rosterDataTable = document.getElementById("rosterDataTable");
-  
-  for (let i=0; playerArray.length > i; i++){
+  processSeasonScores();
+  for (let i=0; playerNamesArray.length > i; i++){
     let score = getRandom(50, 480);
     let rosterRows = document.createElement("tr");
     let cellAvatar = document.createElement("td");
     cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
+    let cellPosition = document.createElement("td");
+    cellPosition.innerText = `${playerPositionsArray[i]}`;
     let cellPlayer = document.createElement("td");
-    cellPlayer.innerText = `${playerArray[i]}`;
+    cellPlayer.innerText = `${playerNamesArray[i]}`;
     let cellScore = document.createElement("td");
     cellScore.innerText = `${score}`;
     rosterRows.appendChild(cellAvatar);
+    rosterRows.appendChild(cellPosition);
     rosterRows.appendChild(cellPlayer);
     rosterRows.appendChild(cellScore);
     rosterDataTable.appendChild(rosterRows);
@@ -244,7 +255,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
       columnDefs: [
         { orderable: false, targets: 0 }
       ],
-      order: [ 2, 'desc' ]
+      order: [ 3, 'desc' ]
     });
     //makeBSTable(document.getElementById('rosterData'))
 }
