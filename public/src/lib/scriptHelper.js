@@ -191,7 +191,7 @@ function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetc
       }
 
     }
-    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex);
+    processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex);
   });
 }
 
@@ -201,27 +201,62 @@ const setValueToField = (fields, value) => {
 };
 
 // function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray)
-function processSeasonScores(playerNamesArray){
+function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex){
   let seasonYear = 2021;
   let seasonScoresResponse = myFetchSeasonScores(seasonYear);
   let listSeasonScores;
+  let defaultOffensivePlayerScore = {
+      "Bye": 0,
+      "Pts": 0,
+      "PassAtt": 0,
+      "PassCmp": 0,
+      "PassYds": 0,
+      "PassTD": 0,
+      "PassInt": 0,
+      "Pass2Pt": 0,
+      "RushAtt": 0,
+      "RushYds": 0,
+      "RushTD": 0,
+      "Rush2Pt": 0,
+      "Rec": 0,
+      "RecYds": 0,
+      "RecTD": 0,
+      "Rec2Pt": 0,
+      "FL": 0,
+      "FLTD": 0
+  }
+  let defaultKickerScore = {
+      "Bye": 0,
+      "Pts*": 0,
+      "XPA": 0,
+      "XPM": 0,
+      "FGA": 0,
+      "FGM": 0,
+      "50+": 0
+  }
   
   seasonScoresResponse.then(function (result){
     listSeasonScores = result;
   }).then(function () {
     let playerObject = {};
     for (let i=0; i < playerNamesArray.length; i++){
-      // if(listSeasonScores[playerNamesArray[i]] === undefined){
-        
-      // }
-      playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],listSeasonScores[playerNamesArray[i]]);
-      // playerObject[playerNamesArray[i]] = (listSeasonScores[playerNamesArray[i]])
+      if(listSeasonScores[playerNamesArray[i]] === undefined && (playerPositionsArray[i] !== 'K')){
+        playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],defaultOffensivePlayerScore);
+        playerObject[playerNamesArray[i]]['position'] = playerPositionsArray[i];
+      } else if (listSeasonScores[playerNamesArray[i]] === undefined && (playerPositionsArray[i] === 'K')){
+        playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],defaultKickerScore);
+        playerObject[playerNamesArray[i]]['position'] = playerPositionsArray[i];
+      } else {
+        playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],listSeasonScores[playerNamesArray[i]]);
+        playerObject[playerNamesArray[i]]['position'] = playerPositionsArray[i];
+      }// playerObject[playerNamesArray[i]] = (listSeasonScores[playerNamesArray[i]])
     }
-    console.log(playerObject)
+    console.log(playerObject);
+    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject);
   })
 
 }
-function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex){
+function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject){
   
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -246,12 +281,15 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           <tbody id="rosterDataTable">
                           </tbody>`; //resets innerHTML table
   let rosterDataTable = document.getElementById("rosterDataTable");
-  processSeasonScores(playerNamesArray); // process scores
   for (let i=0; playerNamesArray.length > i; i++){
-    let score = getRandom(50, 480);
+    let score = playerObject[playerNamesArray[i]]["2021_statistics"]["Pts"];
     let rosterRows = document.createElement("tr");
     let cellAvatar = document.createElement("td");
-    cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
+    if (!/[^a-zA-Z]/.test(playerIndex[i])){
+      cellAvatar.innerHTML = `<img src="https://sleepercdn.com/images/team_logos/nfl/${playerIndex[i].toLowerCase()}.png" width="100" height="83">`
+    } else {
+      cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
+    }
     let cellPosition = document.createElement("td");
     cellPosition.innerText = `${playerPositionsArray[i]}`;
     let cellPlayer = document.createElement("td");
@@ -266,6 +304,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
     }
     let dataTableRoster = new DataTable('#rosterData', {     // options 
       destroy: true,
+      select: 'single',
       paging: true,
       columnDefs: [
         { orderable: false, targets: 0 }
