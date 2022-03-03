@@ -304,7 +304,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
     }
     let dataTableRoster = new DataTable('#rosterData', {     // options 
       destroy: true,
-      select: 'single',
+      select: true,
       paging: true,
       columnDefs: [
         { orderable: false, targets: 0 }
