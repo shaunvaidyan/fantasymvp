@@ -7,6 +7,8 @@ window.addEventListener("load", function (){
     const teamDataTable = document.getElementById('teamDataTable');
     const ownerData = document.getElementById('ownerData');
     const rosterData = document.getElementById('rosterData');
+    const rosterDataTable = document.getElementById('rosterDataTable');
+    const ownerDataTable = document.getElementById('ownerDataTable');
     rosterData.style.visibility = 'hidden';
 
     let form = document.querySelector("form");
@@ -20,7 +22,7 @@ window.addEventListener("load", function (){
      
         let leagueId = document.querySelector("input[name=leagueUrl]").value;
     
-        leagueUrlSubmission(document, form, leagueId, sleeperData, teams);
+        leagueUrlSubmission(document, leagueId, sleeperData);
         
         event.preventDefault();
 
@@ -34,31 +36,8 @@ window.addEventListener("load", function (){
         
 
         
-        userNameSubmission(document, form, userName, sleeperData, teams);
+        userNameSubmission(document, userName, sleeperData);
         
-        event.preventDefault();
-
-    });
-
-    teamData.addEventListener("click", function(event){
-
-        let target = event.target;
-        let leagueId = target.value;
-
-        
-        leagueUrlSubmission(document, form, leagueId, sleeperData, teams);
-        
-        event.preventDefault();
-
-    });
-
-    ownerData.addEventListener("click", function(event){
-   
-        let target = event.target;
-        let leagueInfo = target.value.split(",");
-
-        ownerSubmission(document, form, leagueInfo, sleeperData, teams);
-    
         event.preventDefault();
 
     });

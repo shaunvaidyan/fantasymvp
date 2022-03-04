@@ -1,10 +1,11 @@
 import { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters, myFetchNflJson, myFetchSeasonScores } from './fetch.js';
 
-function userNameSubmission(document, form, userName, sleeperData, teams) {
+function userNameSubmission(document, userName, sleeperData) {
   sleeperData.style.display = "";
   document.getElementById('ownerData').style.display = "none";
   document.getElementById('teamData').style.display = "";
   document.getElementById('rosterData').style.display = "none";
+  document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info`
   if ((document.getElementById('rosterData_wrapper')) !== null){
     document.getElementById('rosterData_wrapper').style.display = "none";
   }
@@ -13,14 +14,13 @@ function userNameSubmission(document, form, userName, sleeperData, teams) {
   userIdResponse.then(function (result) {
     userId = result;
   }).then(function () {
-    let usernameOutput = userId.username;
     let userIdOutput = userId.user_id;
-    //console.log(userId);
+    let usernameDisplay = userId.display_name;
     //console.log(userIdOutput);
-    userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teams);
+    userIdSubmission(document, usernameDisplay, userIdOutput, sleeperData);
     })
 }
-function userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperData, teams){
+function userIdSubmission(document, usernameDisplay, userIdOutput, sleeperData){
   document.getElementById('teamData').style.visibility = "visible";
   let userIdLeagues;
   let userIdLeaguesResponse = myFetchLeaguesFromUserIds(userIdOutput);
@@ -29,20 +29,17 @@ function userIdSubmission(document, form, usernameOutput, userIdOutput, sleeperD
   }).then(function () {
     let jsonLeagueId = userIdLeagues.map (o => o.league_id);
     let jsonLeagueNames = userIdLeagues.map (o => o.name);
-    console.log(jsonLeagueId);
-    addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames);
+    
+    addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, usernameDisplay);
     })
 }
 
-function leagueUrlSubmission(document, form, leagueId, sleeperData, teams) {
+function leagueUrlSubmission(document, leagueId) {
 
-  //console.log(leagueId);
-  // if(leagueId = ""){
-  //   ownerData.style.visibility = "hidden"
-  // }
+  let sleeperData = document.getElementById('sleeperData');
+  document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info`;
   sleeperData.style.visibility = "visible";
   let listedTeams;
-  //console.log(leagueId);
    // Set listedTeamsResponse equal to the value returned by calling myFetchUsers()
   let listedTeamsResponse = myFetchUsers(leagueId);
   listedTeamsResponse.then(function (result) {
@@ -60,23 +57,25 @@ function leagueUrlSubmission(document, form, leagueId, sleeperData, teams) {
           namedTeams[i] = `Team ${owner[i]}`;
         }
       }
-      
+      ////////////////////////
       let jsonLeagueId = listedTeams.map (o => o.league_id);
-      addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLeagueId, listedTeams);
+      console.log(leagueId);
+      addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueId, listedTeams);
       })
   
-  //console.log(teams)
 }
-function ownerSubmission(document, form, leagueInfo, sleeperData, teamData, teams) {
+function ownerSubmission(document, leagueInfo, sleeperData, teamData) {
   let userIdofRostersFetch = leagueInfo[0]
   let leagueIdofRostersFetch = leagueInfo[1]
+  let namedTeam = leagueInfo[2];
+
   let listedRosters;
   let listedRostersResponse = myFetchRosters(leagueIdofRostersFetch);
   listedRostersResponse.then(function (result) {
     listedRosters = result;
   }).then(function () {
     console.log(listedRosters);
-    processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters);
+    processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, namedTeam, listedRosters);
   //let leagueId = leagueUrl.value;
 
   //reset visual elements of form
@@ -84,7 +83,7 @@ function ownerSubmission(document, form, leagueInfo, sleeperData, teamData, team
   sleeperData.style.visibility = "visible";
   })
 }
-function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLeagueId, listedTeams){
+function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueId, listedTeams){
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById("teamData");
@@ -105,12 +104,18 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
                          <tbody id="ownerDataTable">
                          </tbody>`
   teamData.innerHTML = ``
-  let ownerDataTable = document.getElementById("ownerDataTable");
   teamData.style.display = "none"; //resets innerHTML table
-  //let teamData = document.getElementById("teamData");
+
+  ownerDataTable.addEventListener("click", function(event){
+    let target = event.target;
+    let leagueInfo = target.value.split(",");
+
+    ownerSubmission(document, leagueInfo, sleeperData);
+    event.preventDefault();
+  });
+    
   let listedRosterRecords;
-  let processedRecords;
-  let fetchRecord = myFetchRosters(jsonLeagueId[0]);
+  let fetchRecord = myFetchRosters(leagueId);
   fetchRecord.then(function (result) {
     listedRosterRecords = result;
     //console.log(listedRosterRecords);
@@ -123,35 +128,38 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, jsonLea
   let ownerRows = `<meta>`;
   for (let i=0; owner.length > i; i++){
     ownerRows +=
-    `<tr><td><button name="${owner[i]}" type="submit" value="${[jsonUserId[i], jsonLeagueId[i]]}">${owner[i]}</button></td><td><button name="${namedTeams[i]}" type="submit" value="${[jsonUserId[i], jsonLeagueId[i]]}">${namedTeams[i]}</button></td></tr>`
-    // teamData.innerHTML +=
-    // `<td>${team[i]}</td>`
+    `<tr><td><button name="${owner[i]}" type="submit" value="${[jsonUserId[i], leagueId, namedTeams[i]]}">${owner[i]}</button></td><td><button name="${namedTeams[i]}" type="submit" value="${[jsonUserId[i], leagueId, namedTeams[i]]}">${namedTeams[i]}</button></td></tr>`
     }
     ownerDataTable.innerHTML = ownerRows;
     
     document.getElementById("leagueUrl").value = "";
     document.getElementById("userName").value = ""; // reset league URL form
-  // sleeperData.innerHTML =
-  //   `<h2>Teams</h2>
-  //   <ol>
-  //       <li>Owners: ${owner}</li>
-  //       <li>Players: ${players}</li>
-  //   </ol>`
 }
 
-function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames){
+function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, usernameDisplay){
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
   let teamData = document.getElementById("teamData");
   let rosterData = document.getElementById('rosterData');
   rosterData.innerHTML = ``;
   ownerData.innerHTML = ``;
+  document.getElementById('subHeaderText').innerHTML = `Leagues That ${usernameDisplay} Is In`
   teamData.innerHTML = `<thead>
-                        <th>Leagues You Are In</th>
+                        <th>Choose A League</th>
                         </thead>
                         <tbody id="teamDataTable">
                         </tbody>`; //resets innerHTML table
-  let teamDataTable = document.getElementById("teamDataTable");  
+  let teamDataTable = document.getElementById("teamDataTable");
+  teamDataTable.addEventListener("click", function(event){
+
+    let target = event.target;
+    let leagueId = target.value;
+
+    
+    leagueUrlSubmission(document, leagueId);
+    
+    event.preventDefault();
+  }); 
   for (let i=0; jsonLeagueNames.length > i; i++){
     let teamRows = document.createElement("tr");
     let cell = document.createElement("td");
@@ -168,7 +176,7 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames){
     document.getElementById("leagueUrl").value = "";
     document.getElementById("userName").value = "";
 }
-function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters){
+function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, namedTeam, listedRosters){
   let owners = listedRosters.map (o => o.owner_id);
   let index = owners.indexOf(userIdofRostersFetch);
   let players = listedRosters.map (o => o.players);
@@ -191,7 +199,7 @@ function processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetc
       }
 
     }
-    processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex);
+    processSeasonScores(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex);
   });
 }
 
@@ -201,7 +209,8 @@ const setValueToField = (fields, value) => {
 };
 
 // function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray)
-function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex){
+var playerObject = {};
+function processSeasonScores(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex){
   let seasonYear = 2021;
   let seasonScoresResponse = myFetchSeasonScores(seasonYear);
   let listSeasonScores;
@@ -238,7 +247,7 @@ function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFe
   seasonScoresResponse.then(function (result){
     listSeasonScores = result;
   }).then(function () {
-    let playerObject = {};
+    
     for (let i=0; i < playerNamesArray.length; i++){
       if(listSeasonScores[playerNamesArray[i]] === undefined && (playerPositionsArray[i] !== 'K')){
         playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],defaultOffensivePlayerScore);
@@ -252,11 +261,11 @@ function processSeasonScores(document, userIdofRostersFetch, leagueIdofRostersFe
       }// playerObject[playerNamesArray[i]] = (listSeasonScores[playerNamesArray[i]])
     }
     console.log(playerObject);
-    addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject);
+    addPlayerInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject);
   })
 
 }
-function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject){
+function addPlayerInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject){
   
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -270,6 +279,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
   teamData.style.display = "none";
   ownerData.innerHTML = ``;
   ownerData.style.display = "none";
+  document.getElementById('subHeaderText').innerHTML = `${namedTeam} -- Roster`
   rosterData.innerHTML = `<thead>
                           <tr>
                             <th>Avatars</th>
@@ -280,7 +290,7 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
                           </thead>
                           <tbody id="rosterDataTable">
                           </tbody>`; //resets innerHTML table
-  let rosterDataTable = document.getElementById("rosterDataTable");
+  let rosterDataTable = document.getElementById('rosterDataTable');
   for (let i=0; playerNamesArray.length > i; i++){
     let score = playerObject[playerNamesArray[i]]["2021_statistics"]["Pts"];
     let rosterRows = document.createElement("tr");
@@ -311,6 +321,13 @@ function addPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, l
       ],
       order: [ 3, 'desc' ]
     });
+    rosterDataTable.addEventListener("click", function(event){
+      // let target = event.target;
+      // let leagueInfo = target.value.split(",");
+      rosterSubmission();
+      
+      event.preventDefault();
+  });
     //makeBSTable(document.getElementById('rosterData'))
 }
 function getRandom(min, max) {
@@ -320,6 +337,12 @@ function getRandom(min, max) {
 
 function RedirectURL(){
     window.location= createDynamicURL();
+}
+
+function rosterSubmission() {
+  console.log(playerObject);
+  // console.log(Object.keys(playerObject));
+  console.log(Object.entries(playerObject));
 }
 
 // function makeBSTable(otable){
