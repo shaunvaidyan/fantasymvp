@@ -76,11 +76,8 @@ function ownerSubmission(document, leagueInfo, sleeperData, teamData) {
   }).then(function () {
     console.log(listedRosters);
     processPlayerInfo(document, userIdofRostersFetch, leagueIdofRostersFetch, namedTeam, listedRosters);
-  //let leagueId = leagueUrl.value;
 
-  //reset visual elements of form
-
-  sleeperData.style.visibility = "visible";
+    sleeperData.style.visibility = "visible";
   })
 }
 function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueId, listedTeams){
@@ -261,11 +258,11 @@ function processSeasonScores(document, namedTeam, userIdofRostersFetch, leagueId
       }// playerObject[playerNamesArray[i]] = (listSeasonScores[playerNamesArray[i]])
     }
     console.log(playerObject);
-    addPlayerInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject);
+    addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject);
   })
 
 }
-function addPlayerInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject){
+function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject){
   
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -321,10 +318,10 @@ function addPlayerInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRost
       ],
       order: [ 3, 'desc' ]
     });
-    rosterDataTable.addEventListener("click", function(event){
+    rosterDataTable.addEventListener("click", function(e){
       // let target = event.target;
       // let leagueInfo = target.value.split(",");
-      rosterSubmission();
+      rosterSubmission(e);
       
       event.preventDefault();
   });
@@ -339,10 +336,20 @@ function RedirectURL(){
     window.location= createDynamicURL();
 }
 
-function rosterSubmission() {
-  console.log(playerObject);
+function rosterSubmission(e) {
+  let target = e.target;
+  console.log(target.parentNode.childNodes);
+  let playerClicked;
+  if (target.parentNode.childNodes[0].nodeName === 'TD'){
+    playerClicked = target.parentNode.childNodes[2].innerText;
+  } else if (target.parentNode.childNodes[0].nodeName === 'IMG'){
+    playerClicked = target.parentNode.childNodes[0].parentNode.nextElementSibling.nextElementSibling.innerText;
+  }
+  console.log(playerClicked);
+
+  // console.log(playerObject);
   // console.log(Object.keys(playerObject));
-  console.log(Object.entries(playerObject));
+  // console.log(Object.entries(playerObject));
 }
 
 // function makeBSTable(otable){
