@@ -244,7 +244,6 @@ function processSeasonScores(document, namedTeam, userIdofRostersFetch, leagueId
   seasonScoresResponse.then(function (result){
     listSeasonScores = result;
   }).then(function () {
-    
     for (let i=0; i < playerNamesArray.length; i++){
       if(listSeasonScores[playerNamesArray[i]] === undefined && (playerPositionsArray[i] !== 'K')){
         playerObject[playerNamesArray[i]] = setValueToField([`${seasonYear}_statistics`],defaultOffensivePlayerScore);
@@ -258,6 +257,7 @@ function processSeasonScores(document, namedTeam, userIdofRostersFetch, leagueId
       }// playerObject[playerNamesArray[i]] = (listSeasonScores[playerNamesArray[i]])
     }
     console.log(playerObject);
+    // for
     addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdofRostersFetch, listedRosters, playerNamesArray, playerPositionsArray, playerIndex, playerObject);
   })
 
@@ -283,6 +283,7 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
                             <th>Position</th>
                             <th>Players</th>
                             <th>Season Total Points</th>
+                            <th><button id="playerSelector">View Selected Player(s) Stats</button></th>
                           </tr>
                           </thead>
                           <tbody id="rosterDataTable">
@@ -291,22 +292,25 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
   for (let i=0; playerNamesArray.length > i; i++){
     let score = playerObject[playerNamesArray[i]]["2021_statistics"]["Pts"];
     let rosterRows = document.createElement("tr");
+    let cellCheckBox = document.createElement("td");
+    cellCheckBox.innerHTML = `<input type="checkbox" name="chkbx" value="${playerNamesArray[i]}">`
     let cellAvatar = document.createElement("td");
     if (!/[^a-zA-Z]/.test(playerIndex[i])){
       cellAvatar.innerHTML = `<img src="https://sleepercdn.com/images/team_logos/nfl/${playerIndex[i].toLowerCase()}.png" width="100" height="83">`
     } else {
       cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
     }
-    let cellPosition = document.createElement("td");
-    cellPosition.innerText = `${playerPositionsArray[i]}`;
     let cellPlayer = document.createElement("td");
     cellPlayer.innerText = `${playerNamesArray[i]}`;
     let cellScore = document.createElement("td");
     cellScore.innerText = `${score}`;
+    let cellPosition = document.createElement("td");
+    cellPosition.innerText = `${playerPositionsArray[i]}`;
     rosterRows.appendChild(cellAvatar);
     rosterRows.appendChild(cellPosition);
     rosterRows.appendChild(cellPlayer);
     rosterRows.appendChild(cellScore);
+    rosterRows.appendChild(cellCheckBox);
     rosterDataTable.appendChild(rosterRows);
     }
     let dataTableRoster = new DataTable('#rosterData', {     // options 
@@ -314,17 +318,21 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
       select: true,
       paging: true,
       columnDefs: [
-        { orderable: false, targets: 0 }
+        { orderable: false, targets: 0 },
+        { orderable: false, targets: 4 }
       ],
       order: [ 3, 'desc' ]
     });
-    rosterDataTable.addEventListener("click", function(e){
-      // let target = event.target;
-      // let leagueInfo = target.value.split(",");
-      rosterSubmission(e);
+      // let playerSelectionButton = document.createElement("button");
+      // playerSelectionButton.innerText = `View Selected Player(s) Detailed Stats`;
+      // document.getElementById('rosterData_filter').appendChild(playerSelectionButton);
+  //   rosterDataTable.addEventListener("click", function(e){
+  //     // let target = event.target;
+  //     // let leagueInfo = target.value.split(",");
+  //     rosterSubmission(e);
       
-      event.preventDefault();
-  });
+  //     e.preventDefault();
+  // });
     //makeBSTable(document.getElementById('rosterData'))
 }
 function getRandom(min, max) {
@@ -337,15 +345,15 @@ function RedirectURL(){
 }
 
 function rosterSubmission(e) {
-  let target = e.target;
-  console.log(target.parentNode.childNodes);
-  let playerClicked;
-  if (target.parentNode.childNodes[0].nodeName === 'TD'){
-    playerClicked = target.parentNode.childNodes[2].innerText;
-  } else if (target.parentNode.childNodes[0].nodeName === 'IMG'){
-    playerClicked = target.parentNode.childNodes[0].parentNode.nextElementSibling.nextElementSibling.innerText;
-  }
-  console.log(playerClicked);
+  // let target = e.target;
+  // console.log(target.parentNode.childNodes);
+  // let playerClicked;
+  // if (target.parentNode.childNodes[0].nodeName === 'TD'){
+  //   playerClicked = target.parentNode.childNodes[3].innerText;
+  // } else if (target.parentNode.childNodes[0].nodeName === 'IMG'){
+  //   playerClicked = target.parentNode.childNodes[0].parentNode.nextElementSibling.nextElementSibling.innerText;
+  // }
+  // console.log(playerClicked);
 
   // console.log(playerObject);
   // console.log(Object.keys(playerObject));
