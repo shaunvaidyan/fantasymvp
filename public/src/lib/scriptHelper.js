@@ -295,10 +295,10 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
     let cellCheckBox = document.createElement("td");
     cellCheckBox.innerHTML = `<input type="checkbox" name="chkbx" value="${playerNamesArray[i]}">`
     let cellAvatar = document.createElement("td");
-    if (!/[^a-zA-Z]/.test(playerIndex[i])){
-      cellAvatar.innerHTML = `<img src="https://sleepercdn.com/images/team_logos/nfl/${playerIndex[i].toLowerCase()}.png" width="100" height="83">`
+    if (!/[^a-zA-Z]/.test(playerIndex[i])){ // Error handling different avatar urls
+      cellAvatar.innerHTML = `<img id="nflAvatar" src="https://sleepercdn.com/images/team_logos/nfl/${playerIndex[i].toLowerCase()}.png">`
     } else {
-      cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg" width="125" height="83">`
+      cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg">`
     }
     let cellPlayer = document.createElement("td");
     cellPlayer.innerText = `${playerNamesArray[i]}`;
@@ -323,17 +323,27 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
       ],
       order: [ 3, 'desc' ]
     });
-      // let playerSelectionButton = document.createElement("button");
-      // playerSelectionButton.innerText = `View Selected Player(s) Detailed Stats`;
-      // document.getElementById('rosterData_filter').appendChild(playerSelectionButton);
+      $('button').on('click', function () {
+      let data = dataTableRoster
+      .rows( function ( idx, data, node ) {
+          return $(node).find('input[type="checkbox"][name="chkbx"]').prop('checked');
+      } )
+      .data()
+      .toArray();
+      console.log(data);
+      console.log((data[0])[0]);
+      populatePlayerComparison(data);
+    })  
   //   rosterDataTable.addEventListener("click", function(e){
   //     // let target = event.target;
   //     // let leagueInfo = target.value.split(",");
   //     rosterSubmission(e);
-      
   //     e.preventDefault();
   // });
-    //makeBSTable(document.getElementById('rosterData'))
+}
+function populatePlayerComparison(data) {
+  document.getElementById('playerComparison').style.display = "contents";
+  document.getElementById('sleeperData').style.display = "none";
 }
 function getRandom(min, max) {
   let value = (Math.random() * (max - min + 1)) + min;

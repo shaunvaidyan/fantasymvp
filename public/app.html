@@ -7,11 +7,13 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
     <script type="module" src="src/lib/scripts.js"></script>
+    <script src="src/lib/modernizr.js"></script>
+    <script src="src/lib/playerComparison.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FantasyMVP</title>
-
+    
   </head>
   <body>
     <div id="headerText"><h1>FantasyMVP</h1></div>
@@ -45,7 +47,10 @@
                   </tbody>
                 </table>
             <!-- Populated data -->
-        </div>  
+        </div>
+        <div id="playerComparison" class="playerComparison">
+          Hello
+        </div>
         <div id="sleeperForm">
           <form data-sleeperFetch="testForm">
             <div class="formField">
