@@ -19,7 +19,7 @@ body {
 h1 {
     text-align: center;
     font-size: 30px;
-    color: #5b6574;
+    color: #eff1f4;
 }
 
 #sleeperData {
@@ -32,7 +32,7 @@ h2 {
     /* text-align: center;
     padding: 20px 0; */
     text-align: center;
-    color: #5b6574;
+    color: #eff1f4;
     font-size: 24px;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #4d4d4f;
@@ -459,6 +459,7 @@ Main Components
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     width: unset;
+    height: 166px;
   }
   .cd-players-table .top-info h3, .cd-players-table .top-info img {
     -webkit-transition: -webkit-transform 0.3s;

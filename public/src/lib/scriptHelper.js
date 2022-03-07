@@ -39,7 +39,7 @@ function leagueUrlSubmission(document, leagueId) {
 
   let sleeperData = document.getElementById('sleeperData');
   document.getElementById('playerComparison').style.display = "none";
-  document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info`;
+  document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info <button id="backButtonTeamData"">Back</button>`;
   sleeperData.style.visibility = "visible";
   let listedTeams;
    // Set listedTeamsResponse equal to the value returned by calling myFetchUsers()
@@ -82,6 +82,7 @@ function ownerSubmission(document, leagueInfo, sleeperData, teamData) {
     sleeperData.style.visibility = "visible";
   })
 }
+var htmlObject = {};
 function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueId, listedTeams){
   let sleeperData = document.getElementById("sleeperData");
   let ownerData = document.getElementById("ownerData");
@@ -104,14 +105,6 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueI
                          </tbody>`
   teamData.innerHTML = ``
   teamData.style.display = "none"; //resets innerHTML table
-
-  ownerDataTable.addEventListener("click", function(event){
-    let target = event.target;
-    let leagueInfo = target.value.split(",");
-
-    ownerSubmission(document, leagueInfo, sleeperData);
-    event.preventDefault();
-  });
     
   let listedRosterRecords;
   let fetchRecord = myFetchRosters(leagueId);
@@ -131,8 +124,19 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueI
     }
     ownerDataTable.innerHTML = ownerRows;
     
-    document.getElementById("leagueUrl").value = "";
-    document.getElementById("userName").value = ""; // reset league URL form
+  document.getElementById("leagueUrl").value = "";
+  document.getElementById("userName").value = ""; // reset league URL form
+  htmlObject['ownerData'] = (document.getElementById('sleeperData').innerHTML)
+  document.getElementById('backButtonTeamData').addEventListener("click", function(event){
+    navBackToTeamData()
+  });
+  ownerDataTable.addEventListener("click", function(event){
+    let target = event.target;
+    let leagueInfo = target.value.split(",");
+  
+    ownerSubmission(document, leagueInfo, sleeperData);
+    event.preventDefault();
+  });
 }
 
 function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, usernameDisplay){
@@ -149,16 +153,7 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, username
                         <tbody id="teamDataTable">
                         </tbody>`; //resets innerHTML table
   let teamDataTable = document.getElementById("teamDataTable");
-  teamDataTable.addEventListener("click", function(event){
-
-    let target = event.target;
-    let leagueId = target.value;
-
-    
-    leagueUrlSubmission(document, leagueId);
-    
-    event.preventDefault();
-  }); 
+  
   for (let i=0; jsonLeagueNames.length > i; i++){
     let teamRows = document.createElement("tr");
     let cell = document.createElement("td");
@@ -167,6 +162,17 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, username
     teamRows.appendChild(cell);
     teamDataTable.appendChild(teamRows);
     }
+  htmlObject['teamData'] = (document.getElementById('sleeperData').innerHTML)
+  teamDataTable.addEventListener("click", function(event){
+
+    let target = event.target;
+    let leagueId = target.value;
+  
+      
+    leagueUrlSubmission(document, leagueId);
+      
+    event.preventDefault();
+  });
   // for (let i=0; jsonLeagueNames.length > i; i++){
   //   teamRows +=
   //   `<tr><td><button name="${jsonLeagueNames[i]}" type="submit" value="${jsonLeagueId[i]}">${jsonLeagueNames[i]}</button></td><tr>`
@@ -278,7 +284,8 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
   teamData.style.display = "none";
   ownerData.innerHTML = ``;
   ownerData.style.display = "none";
-  document.getElementById('subHeaderText').innerHTML = `${namedTeam} -- Roster`
+  document.getElementById('subHeaderText').innerHTML = `${namedTeam} -- Roster <button id="backButtonOwnerData"">Back</button`
+
   rosterData.innerHTML = `<thead>
                           <tr>
                             <th>Avatars</th>
@@ -302,6 +309,9 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
     } else {
       cellAvatar.innerHTML = `<img src="https://sleepercdn.com/content/nfl/players/thumb/${playerIndex[i]}.jpg">`
     }
+    document.getElementById('backButtonOwnerData').addEventListener("click", function(event){
+      navBackToOwnerData()
+    });
     let cellPlayer = document.createElement("td");
     cellPlayer.innerText = `${playerNamesArray[i]}`;
     let cellScore = document.createElement("td");
@@ -325,6 +335,7 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
       ],
       order: [ 3, 'desc' ]
     });
+      htmlObject['rosterData'] = (document.getElementById('sleeperData').innerHTML)
       $('button').on('click', function () {
       let data = dataTableRoster
       .rows( function ( idx, data, node ) {
@@ -332,16 +343,9 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
       } )
       .data()
       .toArray();
-      console.log(data);
-      console.log((data[0])[0]);
+
       populatePlayerComparison(data);
     })  
-  //   rosterDataTable.addEventListener("click", function(e){
-  //     // let target = event.target;
-  //     // let leagueInfo = target.value.split(",");
-  //     rosterSubmission(e);
-  //     e.preventDefault();
-  // });
 }
 function populatePlayerComparison(data) {
   console.log(playerObject);
@@ -396,7 +400,7 @@ function populatePlayerComparison(data) {
     }
   
     playersTable.prototype.bindEvents = function() {
-      var self = this;
+      let self = this;
       //detect scroll left inside producst table
       self.playersWrapper.on('scroll', function(){
         if(!self.leftScrolling) {
@@ -406,7 +410,7 @@ function populatePlayerComparison(data) {
       });
       //select single player to filter
       self.players.on('click', '.top-info', function(){
-        var player = $(this).parents('.player');
+        let player = $(this).parents('.player');
         if( !self.filtering && player.hasClass('selected') ) {
           player.removeClass('selected');
           self.selectedplayersNumber = self.selectedplayersNumber - 1;
@@ -458,7 +462,7 @@ function populatePlayerComparison(data) {
     }
   
     playersTable.prototype.updateLeftScrolling = function() {
-      var totalTableWidth = parseInt(this.tableColumns.eq(0).outerWidth(true)),
+      let totalTableWidth = parseInt(this.tableColumns.eq(0).outerWidth(true)),
         tableViewport = parseInt(this.element.width()),
         scrollLeft = this.playersWrapper.scrollLeft();
   
@@ -480,7 +484,7 @@ function populatePlayerComparison(data) {
     }
   
     playersTable.prototype.updateTopScrolling = function(scrollTop) {
-      var offsetTop = this.table.offset().top,
+      let offsetTop = this.table.offset().top,
         tableScrollLeft = this.playersWrapper.scrollLeft();
       
       if ( offsetTop <= scrollTop && offsetTop + this.tableHeight - this.topInfoHeight >= scrollTop ) {
@@ -529,14 +533,14 @@ function populatePlayerComparison(data) {
     }
   
     playersTable.prototype.filterplayers = function() {
-      var self = this,
+      let self = this,
         containerOffsetLeft = self.tableColumns.offset().left,
         scrollLeft = self.playersWrapper.scrollLeft(),
         selectedplayers = this.players.filter('.selected'),
         numberplayers = selectedplayers.length;
   
       selectedplayers.each(function(index){
-        var player = $(this),
+        let player = $(this),
           leftTranslate = containerOffsetLeft + index*self.playerWidth + scrollLeft - player.offset().left;
         setTranformX(player, leftTranslate);
         
@@ -568,7 +572,7 @@ function populatePlayerComparison(data) {
     }
     
     playersTable.prototype.resetplayersVisibility = function() {
-      var self = this,
+      let self = this,
         containerOffsetLeft = self.tableColumns.offset().left,
         selectedplayers = this.players.filter('.selected'),
         numberplayers = selectedplayers.length,
@@ -578,10 +582,10 @@ function populatePlayerComparison(data) {
       self.element.addClass('no-player-transition').removeClass('filtered');
   
       self.players.each(function(index){
-        var player = $(this);
+        let player = $(this);
         if (player.hasClass('selected')) {
           n = n + 1;
-          var leftTranslate = (-index + n - 1)*self.playerWidth;
+          let leftTranslate = (-index + n - 1)*self.playerWidth;
           setTranformX(player, leftTranslate);
         }
       });
@@ -594,7 +598,7 @@ function populatePlayerComparison(data) {
     }
   
     playersTable.prototype.updateSlider = function(bool) {
-      var scrollLeft = this.playersWrapper.scrollLeft();
+      let scrollLeft = this.playersWrapper.scrollLeft();
       scrollLeft = ( bool ) ? scrollLeft + this.playerWidth : scrollLeft - this.playerWidth;
   
       if( scrollLeft < 0 ) scrollLeft = 0;
@@ -603,13 +607,13 @@ function populatePlayerComparison(data) {
       this.playersWrapper.animate( {scrollLeft: scrollLeft}, 200 );
     }
   
-    var comparisonTables = [];
+    let comparisonTables = [];
     $('.cd-players-comparison-table').each(function(){
       //create a playersTable object for each .cd-players-comparison-table
       comparisonTables.push(new playersTable($(this)));
     });
     
-    var windowScrolling = false;
+    let windowScrolling = false;
     //detect window scroll - fix player top-info on scrolling
     $(window).on('scroll', function(){
       if(!windowScrolling) {
@@ -618,7 +622,7 @@ function populatePlayerComparison(data) {
       }
     });
   
-    var windowResize = false;
+    let windowResize = false;
     //detect window resize - reset .cd-players-comparison-table properties
     $(window).on('resize', function(){
       if(!windowResize) {
@@ -628,7 +632,7 @@ function populatePlayerComparison(data) {
     });
   
     function checkScrolling(){
-      var scrollTop = $(window).scrollTop();
+      let scrollTop = $(window).scrollTop();
       comparisonTables.forEach(function(element){
         element.updateTopScrolling(scrollTop);
       });
@@ -658,6 +662,8 @@ function populatePlayerComparison(data) {
         'transform': 'translateX(' + value + 'px)'
       });
     }
+    htmlObject['playerComparison'] = (document.getElementById('sleeperData').innerHTML)
+    //console.log(htmlObject['rosterData']);
   });
 
 }
@@ -670,28 +676,35 @@ function RedirectURL(){
     window.location= createDynamicURL();
 }
 
-function rosterSubmission(e) {
-  // let target = e.target;
-  // console.log(target.parentNode.childNodes);
-  // let playerClicked;
-  // if (target.parentNode.childNodes[0].nodeName === 'TD'){
-  //   playerClicked = target.parentNode.childNodes[3].innerText;
-  // } else if (target.parentNode.childNodes[0].nodeName === 'IMG'){
-  //   playerClicked = target.parentNode.childNodes[0].parentNode.nextElementSibling.nextElementSibling.innerText;
-  // }
-  // console.log(playerClicked);
+function navBackToTeamData() {
+  document.getElementById('sleeperData').innerHTML = `${htmlObject['teamData']}`
+  document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info`
+  teamDataTable.addEventListener("click", function(event){
 
-  // console.log(playerObject);
-  // console.log(Object.keys(playerObject));
-  // console.log(Object.entries(playerObject));
+    let target = event.target;
+    let leagueId = target.value;
+  
+      
+    leagueUrlSubmission(document, leagueId);
+      
+    event.preventDefault();
+  });
 }
 
-// function makeBSTable(otable){
-//   var table = $(otable).clone(); console.log(table);
-//   table.addClass("table-hover table-bordered table-striped table");
-//   var div = $('<div class="table-responsive" />');
-//   $(otable).replaceWith(div);
-//   div.append(table);
-// }
+function navBackToOwnerData() {
+  document.getElementById('sleeperData').innerHTML = `${htmlObject['ownerData']}`
+  document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info <button id="backButtonTeamData"">Back</button>`;
+  document.getElementById('backButtonTeamData').addEventListener("click", function(event){
+    navBackToTeamData()
+  });
+  ownerDataTable.addEventListener("click", function(event){
+    let target = event.target;
+    let leagueInfo = target.value.split(",");
+  
+    ownerSubmission(document, leagueInfo, sleeperData);
+    event.preventDefault();
+  });
+}
+
 
 export { userNameSubmission, userIdSubmission, leagueUrlSubmission, ownerSubmission };
