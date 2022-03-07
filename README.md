@@ -9,8 +9,8 @@ View Insights into your team's performance over the course of the NFL season ext
 
 Once you login to FantasyMVP, it shows you insights about the players on your selected roster in your Sleeper.app League. You can view their avatars and see the points they scored over the course of the 2021 season.
 
-<div align="center">
-## Technologies:  
+
+## <div align="center">Technologies:  
 ### Backend:  
 NodeJS  
 Express.js  
