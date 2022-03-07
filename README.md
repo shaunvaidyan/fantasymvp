@@ -15,6 +15,9 @@ NodeJS
 Express.js  
 MySQL
 ### Frontend
-Javascript  
+Javascript & JQuery
 HTML  
 CSS
+
+I implemented a login frontend that can register and login users by using Express to write API routes and using a MySQL database for storage. I hashed the passwords for security using a NodeJS library: Bcrypt. FantasyMVP fetches data from Sleeper.app API about users on its platform and their metadata like "What leagues are they in?" and "What players do they have and how many points have they scored?".
+Sleeper.app deprecated the player scoring statistics from their API so I scraped the missing statistics from ESPN's api and stored the combined stats & info from ESPN and Sleeper in arrays & objects and then visualized it for the users of the app to see in one view. I implemented pagination and search features to help users view large rosters and a separate view to display the indepth statistical breakdown of their players' accomplishments this season.
