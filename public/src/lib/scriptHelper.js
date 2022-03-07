@@ -350,8 +350,9 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
 function populatePlayerComparison(data) {
   console.log(playerObject);
   document.getElementById('rosterData_wrapper').style.display = "none";
+  let playerComparisonRows = `<meta>`;
   for (let i=0; i < data.length; i++){
-  document.getElementById('playerComparisonTable').innerHTML +=
+    playerComparisonRows +=
   `<li class="player">
   <div class="top-info">
   <div class="check"></div>
@@ -372,7 +373,7 @@ function populatePlayerComparison(data) {
   </ul>
   </li> <!-- .player -->`
   }
-  
+  document.getElementById('playerComparisonTable').innerHTML = playerComparisonRows;
   document.getElementById('playerComparison').style.display = "block";
   
   $(function() {

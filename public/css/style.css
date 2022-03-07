@@ -138,6 +138,7 @@ button {
 }
 .playerComparison {
     display: none;
+    margin-left: 50px;
 }
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
