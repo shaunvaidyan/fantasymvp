@@ -1,6 +1,7 @@
 import { myFetchUsers, myFetchUserIdFromUserName, myFetchLeaguesFromUserIds, myFetchRosters, myFetchNflJson, myFetchSeasonScores } from './fetch.js';
 
 function userNameSubmission(document, userName, sleeperData) {
+  document.getElementById('infoForUser').style.display = "none";
   document.getElementById('playerComparison').style.display = "none";
   sleeperData.style.display = "";
   document.getElementById('ownerData').style.display = "none";
@@ -41,6 +42,7 @@ function leagueUrlSubmission(document, leagueId, leagueName) {
     alert("Invalid league URL!");
   } else {
   let sleeperData = document.getElementById('sleeperData');
+  document.getElementById('infoForUser').style.display = "none";
   document.getElementById('playerComparison').style.display = "none";
   document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info <button id="backButtonTeamData"">Back</button>`;
   sleeperData.style.visibility = "visible";

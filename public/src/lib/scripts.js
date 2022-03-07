@@ -21,7 +21,7 @@ window.addEventListener("load", function (){
     leagueSubmit.addEventListener("click", function(event){
      
         let leagueId = document.querySelector("input[name=leagueUrl]").value;
-    
+        
         leagueUrlSubmission(document, leagueId, sleeperData);
         
         event.preventDefault();
