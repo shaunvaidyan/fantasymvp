@@ -2,7 +2,7 @@
 
 ### <div align="center">Fantasy Football Season in Review</div>
 
-View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API!
+View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API and supplemented by ESPN's API!
 
 [Sleeper API Documentation](https://docs.sleeper.app)
 
