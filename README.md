@@ -2,13 +2,14 @@
 
 ### <div align="center">Fantasy Football Season in Review</div>
 
-View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API and supplemented by ESPN's API!
+View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API and supplemented missing information with ESPN's API!
 
 [Sleeper API Documentation](https://docs.sleeper.app)
 
 
 Once you login to FantasyMVP, it shows you insights about the players on your selected roster in your Sleeper.app League. You can view their avatars and see the points they scored over the course of the 2021 season.
 
+<div align="center">
 ## Technologies:  
 ### Backend:  
 NodeJS  
@@ -18,6 +19,7 @@ MySQL
 Javascript & JQuery
 HTML  
 CSS
+  </div>
 
 ### Overview:
 I implemented a login frontend that can register and login users by using Express to write API routes and using a MySQL database for storage. I hashed the passwords for security using a NodeJS library: Bcrypt. FantasyMVP fetches data from Sleeper.app API about users on its platform and their metadata like "What leagues are they in?" and "What players do they have and how many points have they scored?".
