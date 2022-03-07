@@ -24,7 +24,7 @@ h1 {
 
 #sleeperData {
     margin: auto;
-    width: 70%;
+    width: 100%;
     text-align: center;
 }
 
@@ -49,10 +49,26 @@ h2 {
     padding-top: 40px;
     padding-bottom: 40px;
 }
-#rosterData {
+#ownerData {
+    margin: auto;
+    width: 40%;
+    text-align: center;
+}
+#teamData {
+    margin: auto;
+    width: 30%;
+    text-align: center;
+}
+#rosterData_wrapper {
     margin: auto;
     width: 70%;
     text-align: center;
+}
+#rosterData_length {
+    color: #fafafa;
+}
+#rosterData_filter {
+    color: #fafafa;
 }
 .css-divider {
 
@@ -156,6 +172,7 @@ footer, header, hgroup, menu, nav, section, main {
 }
 .playerComparison ol, ul {
 	list-style: none;
+    background: #1a1919;
 }
 .playerComparison blockquote, q {
 	quotes: none;
@@ -179,34 +196,34 @@ Main Components
 .cd-players-comparison-table {
     margin-bottom: 6em;
   }
-  .cd-players-comparison-table::after {
+.cd-players-comparison-table::after {
     /* never visible - this is used in jQuery to check the current MQ */
     display: none;
     content: 'mobile';
-  }
-  .cd-players-comparison-table header {
+}
+.cd-players-comparison-table header {
     padding: 0 5% 25px;
-  }
-  .cd-players-comparison-table header::after {
+}
+.cd-players-comparison-table header::after {
     clear: both;
     content: "";
     display: table;
-  }
-  .cd-players-comparison-table h2 {
+}
+.cd-players-comparison-table h2 {
     float: left;
     font-weight: bold;
-  }
-  .cd-players-comparison-table .actions {
+}
+.cd-players-comparison-table .actions {
     float: right;
-  }
-  .cd-players-comparison-table .reset, .cd-players-comparison-table .filter {
+}
+.cd-players-comparison-table .reset, .cd-players-comparison-table .filter {
     font-size: 1.4rem;
-  }
-  .cd-players-comparison-table .reset {
-    color: #404042;
+}
+.cd-players-comparison-table .reset {
+    color: #ffffff;
     text-decoration: underline;
-  }
-  .cd-players-comparison-table .filter {
+}
+.cd-players-comparison-table .filter {
     padding: .6em 1.5em;
     color: #ffffff;
     background-color: #cccccc;
@@ -216,36 +233,36 @@ Main Components
     -webkit-transition: background-color 0.3s;
     -moz-transition: background-color 0.3s;
     transition: background-color 0.3s;
-  }
-  .cd-players-comparison-table .filter.active {
+}
+.cd-players-comparison-table .filter.active {
     cursor: pointer;
     background-color: #9dc997;
-  }
-  .no-touch .cd-players-comparison-table .filter.active:hover {
+}
+.no-touch .cd-players-comparison-table .filter.active:hover {
     background-color: #a7cea1;
   }
-  @media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 1170px) {
     .cd-players-comparison-table {
-      margin-bottom: 8em;
+        margin-bottom: 8em;
     }
     .cd-players-comparison-table::after {
-      /* never visible - this is used in jQuery to check the current MQ */
-      content: 'desktop';
+        /* never visible - this is used in jQuery to check the current MQ */
+        content: 'desktop';
     }
     .cd-players-comparison-table header {
-      padding: 0 5% 40px;
+        padding: 0 5% 40px;
     }
     .cd-players-comparison-table h2 {
-      font-size: 2.4rem;
+        font-size: 2.4rem;
     }
     .cd-players-comparison-table .reset, .cd-players-comparison-table .filter {
-      font-size: 1.6rem;
+        font-size: 1.6rem;
     }
     .cd-players-comparison-table .filter {
-      padding: .6em 2em;
-      margin-left: 1.6em;
+        padding: .6em 2em;
+        margin-left: 1.6em;
     }
-  }
+}
   
   .cd-players-table {
     position: relative;
@@ -349,13 +366,14 @@ Main Components
   }
   
   .cd-stats-list li {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    padding: 25px 40px;
+    padding: 18.6px 40px;
     border-color: #e6e6e6;
     border-style: solid;
     border-top-width: 1px;
     border-right-width: 1px;
+    border-bottom-width: 1px;
   }
   .cd-stats-list li.rate {
     /* rating stars */
@@ -365,12 +383,12 @@ Main Components
     display: inline-block;
     height: 22px;
     width: 110px;
-    background: url(../img/cd-star.svg);
+    background: url(../static/media/cd-star.svg);
     color: transparent;
   }
   @media only screen and (min-width: 1170px) {
     .cd-stats-list li {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
     .cd-stats-list li.rate {
       padding: 22px 0;
@@ -417,7 +435,7 @@ Main Components
     -moz-transition: height 0.3s;
     transition: height 0.3s;
     cursor: pointer;
-    background: #ffffff;
+    background: #0f0f0f;
   }
   .cd-players-table .top-info::after {
     /* color gradient below .top-info -  visible when .top-info is fixed */
@@ -433,7 +451,6 @@ Main Components
     opacity: 0;
   }
   .cd-players-table .top-info h3 {
-    padding: 1.25em 0 0.625em;
     font-weight: bold;
     font-size: 1.4rem;
   }
@@ -441,6 +458,7 @@ Main Components
     display: block;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    width: unset;
   }
   .cd-players-table .top-info h3, .cd-players-table .top-info img {
     -webkit-transition: -webkit-transform 0.3s;
@@ -467,14 +485,14 @@ Main Components
     /* green circle dot */
     border-radius: 50%;
     border: 1px solid #e6e6e6;
-    background: #ffffff;
+    background: #0f0f0f;
     -webkit-transition: background-color 0.3s, -webkit-transform 0.3s, border-color 0.3s;
     -moz-transition: background-color 0.3s, -moz-transform 0.3s, border-color 0.3s;
     transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
   }
   .cd-players-table .top-info .check::after {
     /* check icon */
-    background: url(../img/cd-check.svg) no-repeat center center;
+    background: url(../static/media/cd-check.svg) no-repeat center center;
     background-size: 24px 24px;
     opacity: 0;
     -webkit-transition: opacity 0.3s;
@@ -487,8 +505,7 @@ Main Components
       width: 310px;
     }
     .cd-players-table .top-info h3 {
-      padding-top: 1.4em;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
     }
     .cd-players-table .top-info .check {
       margin-bottom: 1.5em;
@@ -499,7 +516,7 @@ Main Components
     /* models */
     width: 120px;
     cursor: auto;
-    background: #fafafa;
+    background: #0f0f0f;
   }
   @media only screen and (min-width: 1170px) {
     .cd-players-table .stats .top-info {
@@ -631,7 +648,7 @@ Main Components
     color: transparent;
     height: 60px;
     width: 40px;
-    background: rgba(64, 64, 66, 0.8) url("../img/cd-arrow.svg") no-repeat center center;
+    background: rgba(64, 64, 66, 0.8) url("../static/media/cd-arrow.svg") no-repeat center center;
     border-radius: 3px;
     -webkit-transition: background-color 0.3s, opacity 0.3s, visibility 0.3s, -webkit-transform 0.3s;
     -moz-transition: background-color 0.3s, opacity 0.3s, visibility 0.3s, -moz-transform 0.3s;

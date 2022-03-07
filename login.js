@@ -10,6 +10,7 @@ const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DATABASE = process.env.DB_DATABASE;
 const DB_PORT = process.env.DB_PORT;
+const SECRET = process.env.SECRET;
 
 // const connection = mysql.createConnection({
 // 	host     : DB_HOST,
@@ -30,13 +31,17 @@ const db = mysql.createPool({
 const app = express();
 
 app.use(session({
-	secret: 'secret',
+	secret: SECRET,
 	resave: true,
 	saveUninitialized: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use((req, res, next)=>{
+// 	res.redirect("/");
+// });
 
 // http://localhost:3000/
 app.get('/', function(request, response) {
@@ -88,6 +93,11 @@ app.get('/registration', function(request, response) {
 	response.sendFile(path.join(__dirname + '/registration.html'));
 });
 
+app.get('/logout', function(request, response) {
+	// Render login template
+	response.sendFile(path.join(__dirname + '/login.html'));
+});
+
 //CREATE USER
 app.post("/createUser", async (req,res) => {
 	let username = req.body.username;
@@ -113,9 +123,8 @@ app.post("/createUser", async (req,res) => {
    			await connection.query (insert_query, (err, result)=> {   connection.release()   
 
    			if (err) throw (err)
-   			console.log ("Created new User")
-   			console.log(result.insertId)
-   			res.sendStatus(201)
+   			console.log('New User Created Successfully!');
+			res.redirect('/');
   })
  }
 }) //end of connection.query()
@@ -123,14 +132,14 @@ app.post("/createUser", async (req,res) => {
 }) //end of app.post()
 
 // http://localhost:3000/home
-app.get('/home', function(request, response) {
+app.get('/home', function(req, res) {
 	// If the user is loggedin
-	if (request.session.loggedin) {
+	if (req.session.loggedin) {
 		// Output username
-		response.redirect('app.html');
+		res.redirect('app.html');
 	} else {
 		// Not logged in
-		response.send('Please login to view this page!');
+		res.redirect('/');
 	}
 	response.end();
 });

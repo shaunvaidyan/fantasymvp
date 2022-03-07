@@ -3,12 +3,11 @@
   <head>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="src/lib/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
     <script type="module" src="src/lib/scripts.js"></script>
-    <script src="src/lib/modernizr.js"></script>
-    <script src="src/lib/playerComparison.js"></script>
+    <script type="text/javascript" src="src/lib/modernizr.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,12 @@
     
   </head>
   <body>
-    <div id="headerText"><h1>FantasyMVP</h1></div>
+    <script>
+      function refreshWindow() {
+        window.location.reload();
+      }
+      </script>
+    <div id="headerText"><a href="#" onclick="refreshWindow()"><h1>FantasyMVP</h1></a></div>
       <div id="subHeader"><h2 id="subHeaderText">Sleeper.app League Info</h2></div>
       <div id="sleeperData" data-testid="sleeperData" class="sleeperTables">
                 <table id="ownerData">
@@ -47,10 +51,46 @@
                   </tbody>
                 </table>
             <!-- Populated data -->
-        </div>
-        <div id="playerComparison" class="playerComparison">
-          Hello
-        </div>
+            <div id="playerComparison" class="playerComparison">
+              <section class="cd-players-comparison-table">
+                <header>
+                   <div class="actions">
+                      <a href="#0" class="reset">Reset</a>
+                      <a href="#0" class="filter">Filter</a>
+                   </div>
+                </header>
+              
+                <div class="cd-players-table">
+                   <div class="stats">
+                      <div class="top-info">Players</div>
+                      <ul class="cd-stats-list">
+                         <li>Points</li>
+                         <li>Passing Yds</li>
+                         <li>Passing TDs</li>
+                         <li>Rushing Yds</li>
+                         <li>Rushing TDs</li>
+                         <li>Receptions</li>
+                         <li>Receiving Yds</li>
+                         <li>Receiving TDs</li>
+                         <!-- other stats here -->
+                      </ul>
+                   </div> <!-- .stats -->
+              
+                   <div class="cd-players-wrapper">
+                      <ul class="cd-players-columns" id="playerComparisonTable">
+                            <!-- loop to populate players-->
+                      </ul> <!-- .cd-players-columns -->
+                   </div> <!-- .cd-players-wrapper -->
+              
+                   <ul class="cd-table-navigation">
+                      <li><a href="#0" class="prev inactive">Prev</a></li>
+                      <li><a href="#0" class="next">Next</a></li>
+                   </ul>
+                </div> <!-- .cd-players-table -->
+              </section>
+            </div>
+          </div>
+        
         <div id="sleeperForm">
           <form data-sleeperFetch="testForm">
             <div class="formField">
