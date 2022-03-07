@@ -218,7 +218,7 @@ Main Components
     float: right;
 }
 .cd-players-comparison-table .reset, .cd-players-comparison-table .filter {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 .cd-players-comparison-table .reset {
     color: #ffffff;
@@ -257,7 +257,7 @@ Main Components
         font-size: 2.4rem;
     }
     .cd-players-comparison-table .reset, .cd-players-comparison-table .filter {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
     .cd-players-comparison-table .filter {
         padding: .6em 2em;
@@ -453,7 +453,7 @@ Main Components
   }
   .cd-players-table .top-info h3 {
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.0rem;
   }
   .cd-players-table .top-info img {
     display: block;
@@ -507,7 +507,7 @@ Main Components
       width: 310px;
     }
     .cd-players-table .top-info h3 {
-      font-size: 1.4rem;
+      font-size: 1.0rem;
     }
     .cd-players-table .top-info .check {
       margin-bottom: 1.5em;

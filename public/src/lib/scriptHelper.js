@@ -20,6 +20,7 @@ function userNameSubmission(document, userName, sleeperData) {
     //console.log(userIdOutput);
     userIdSubmission(document, usernameDisplay, userIdOutput, sleeperData);
     })
+    .catch(error => alert('Invalid UserName'));
 }
 function userIdSubmission(document, usernameDisplay, userIdOutput, sleeperData){
   document.getElementById('teamData').style.visibility = "visible";
@@ -35,8 +36,10 @@ function userIdSubmission(document, usernameDisplay, userIdOutput, sleeperData){
     })
 }
 
-function leagueUrlSubmission(document, leagueId) {
-
+function leagueUrlSubmission(document, leagueId, leagueName) {
+  if ((!/[^a-zA-Z]/.test(leagueId))){
+    alert("Invalid league URL!");
+  } else {
   let sleeperData = document.getElementById('sleeperData');
   document.getElementById('playerComparison').style.display = "none";
   document.getElementById('subHeaderText').innerHTML = `Sleeper.app League Info <button id="backButtonTeamData"">Back</button>`;
@@ -48,7 +51,7 @@ function leagueUrlSubmission(document, leagueId) {
     listedTeams = result;
 
     }).then(function () {
-      console.log(listedTeams);
+      //console.log(listedTeams);
         
       let owner = listedTeams.map (o => o.display_name);
       let jsonUserId = listedTeams.map (o => o.user_id);
@@ -61,10 +64,11 @@ function leagueUrlSubmission(document, leagueId) {
       }
       ////////////////////////
       let jsonLeagueId = listedTeams.map (o => o.league_id);
-      console.log(leagueId);
+      //console.log(leagueId);
       addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueId, listedTeams);
       })
-  
+      .catch(error => alert('Invalid LeagueID'));
+    }
 }
 function ownerSubmission(document, leagueInfo, sleeperData, teamData) {
   let userIdofRostersFetch = leagueInfo[0]
@@ -114,8 +118,9 @@ function addTeamInfoByLeagueUrl(document, owner, jsonUserId, namedTeams, leagueI
   }).then(function () {
     listedRosterRecords.map (o => o.metadata.record);
     let recordRaw = listedRosterRecords.map (o => o.metadata.record);
-    console.log(recordRaw);
+    //console.log(recordRaw);
   })
+  .catch(error => alert('Invalid LeagueID'));
   
   let ownerRows = `<meta>`;
   for (let i=0; owner.length > i; i++){
@@ -158,7 +163,7 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, username
     let teamRows = document.createElement("tr");
     let cell = document.createElement("td");
     cell.innerHTML =
-    `<button name="${jsonLeagueNames[i]}" type="submit" value="${jsonLeagueId[i]}">${jsonLeagueNames[i]}</button>`
+    `<button name="${jsonLeagueNames[i]}" type="submit" value="${[jsonLeagueId[i], jsonLeagueNames[i]]}">${jsonLeagueNames[i]}</button>`
     teamRows.appendChild(cell);
     teamDataTable.appendChild(teamRows);
     }
@@ -166,10 +171,12 @@ function addTeamInfoByUserName(document, jsonLeagueId, jsonLeagueNames, username
   teamDataTable.addEventListener("click", function(event){
 
     let target = event.target;
-    let leagueId = target.value;
+    let value = target.value.split(",");
+    let leagueId = value[0];
+    let leagueName = value[1];
   
       
-    leagueUrlSubmission(document, leagueId);
+    leagueUrlSubmission(document, leagueId, leagueName);
       
     event.preventDefault();
   });
@@ -348,7 +355,7 @@ function addPlayerListInfo(document, namedTeam, userIdofRostersFetch, leagueIdof
     })  
 }
 function populatePlayerComparison(data) {
-  console.log(playerObject);
+  console.log(data);
   document.getElementById('rosterData_wrapper').style.display = "none";
   let playerComparisonRows = `<meta>`;
   for (let i=0; i < data.length; i++){
@@ -357,7 +364,7 @@ function populatePlayerComparison(data) {
   <div class="top-info">
   <div class="check"></div>
   ${(data[i])[0]}
-  <h3>${(data[i])[2]}</h3>
+  <h3>${(data[i])[2]} - ${(data[i])[1]} </h3>
   </div> <!-- .top-info -->
 
   <ul class="cd-stats-list">
@@ -683,10 +690,12 @@ function navBackToTeamData() {
   teamDataTable.addEventListener("click", function(event){
 
     let target = event.target;
-    let leagueId = target.value;
+    let value = target.value.split(",");
+    let leagueId = value[0];
+    let leagueName = value[1];
   
       
-    leagueUrlSubmission(document, leagueId);
+    leagueUrlSubmission(document, leagueId, leagueName);
       
     event.preventDefault();
   });
