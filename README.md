@@ -15,7 +15,7 @@ Once you login to FantasyMVP, it shows you insights about the players on your se
 <div align="center">NodeJS  </div>
 <div align="center">Express.js  </div>
 <div align="center">MySQL  </div>
-### <div align="center">Frontend: </div>
+<div align="center">Frontend: </div>
 <div align="center">Javascript & JQuery</div>
 <div align="center">HTML  </div>
 <div align="center">CSS</div>
