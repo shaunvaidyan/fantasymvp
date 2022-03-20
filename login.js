@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs"); // bcryptjs on linux server
 
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
@@ -141,7 +141,7 @@ app.get('/home', function(req, res) {
 		// Not logged in
 		res.redirect('/');
 	}
-	response.end();
+	res.end();
 });
 
 app.listen(3000);
