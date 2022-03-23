@@ -20,6 +20,7 @@ services:
       - '3306:3306'
     volumes:
       - ./sql_initialize/:/docker-entrypoint-initdb.d/:ro
+      - ./my-data:/var/lib/mysql:rw
     networks:
       - node-app
 
@@ -36,3 +37,6 @@ services:
       - db
     networks:
       - node-app
+
+volumes:
+  my-data:
