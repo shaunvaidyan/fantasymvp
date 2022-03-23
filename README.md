@@ -9,7 +9,7 @@ View Insights into your team's performance over the course of the NFL season ext
 You can easily deploy this locally using Docker. Install the latest Docker CE from https://docs.docker.com/get-docker/  and Docker-Compose to get started!
   
 Just change the MySQL environmental variables in the .env.sample file and rename it to .env  
-Then just run docker-compose up -d and the application and MySQL backend will automatically build and start running!  
+Then just run ```docker-compose up -d``` and the app and MySQL backend will deploy and start running w/ database persistence!  
 
 View a demo @ https://fantasymvp.vaidyan.me  
   
