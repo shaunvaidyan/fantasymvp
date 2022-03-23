@@ -5,6 +5,11 @@
 View Insights into your team's performance over the course of the NFL season extracted from the Sleeper.app API and supplemented missing information with ESPN's API!
 
 [Sleeper API Documentation](https://docs.sleeper.app)
+### Deployment/Installation
+You can easily deploy this locally using Docker. Install the latest Docker CE from https://docs.docker.com/get-docker/  
+  
+Just change the MYSQL environmental variables in the .env.sample file and rename it to .env  
+Then just run docker-compose up -d and the application and MySQL backend will automatically build and start running!  
 
 View a demo @ https://fantasymvp.vaidyan.me  
 
