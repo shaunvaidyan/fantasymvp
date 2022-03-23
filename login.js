@@ -15,7 +15,7 @@ const SECRET = process.env.SECRET;
 
 const db = mysql.createPool({
 	connectionLimit: 100,
-	host: DB_HOST,
+	host: 'db',
 	user: DB_USER,
 	password: DB_PASSWORD,
 	database: DB_DATABASE,

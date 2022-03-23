@@ -26,9 +26,7 @@ services:
   app:
     environment: 
       DB_HOST: 'db'
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    image: shaunvaidyan/fantasymvp:latest
     ports: 
       - 3000:3000
     volumes:
