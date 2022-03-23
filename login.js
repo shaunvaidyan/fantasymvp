@@ -1,4 +1,5 @@
 require("dotenv").config();
+//const db = require("./db.js");
 const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
@@ -12,22 +13,15 @@ const DB_DATABASE = process.env.DB_DATABASE;
 const DB_PORT = process.env.DB_PORT;
 const SECRET = process.env.SECRET;
 
-// const connection = mysql.createConnection({
-// 	host     : DB_HOST,
-// 	user     : DB_USER,
-// 	password : DB_PASSWORD,
-// 	database : DB_DATABASE
-// });
-
 const db = mysql.createPool({
-   connectionLimit: 100,
-   host: DB_HOST,
-   user: DB_USER,
-   password: DB_PASSWORD,
-   database: DB_DATABASE,
-   port: DB_PORT
-});
-
+	connectionLimit: 100,
+	host: DB_HOST,
+	user: DB_USER,
+	password: DB_PASSWORD,
+	database: DB_DATABASE,
+	port: DB_PORT
+ });
+ 
 const app = express();
 
 app.use(session({

@@ -1,0 +1,40 @@
+version: "3.8"
+
+networks:
+  node-app:
+    driver: bridge
+
+services:
+  db:
+    image: mysql:8.0.28
+    env_file:
+      - ./.env
+    environment: 
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${SECRET}
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    volumes:
+      - ./sql_initialize/:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - node-app
+
+  app:
+    environment: 
+      DB_HOST: 'db'
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/app
+      - '/app/node_modules'
+    depends_on:
+      - db
+    networks:
+      - node-app
