@@ -6,12 +6,45 @@ View Insights into your team's performance over the course of the NFL season ext
 
 [Sleeper API Documentation](https://docs.sleeper.app)
 ### Deployment/Installation
-You can easily deploy this locally using Docker. Install the latest Docker CE from https://docs.docker.com/get-docker/  and Docker-Compose to get started!
+You can easily deploy a local instance on your own environment using Docker. Install the latest Docker CE from https://docs.docker.com/get-docker/  and Docker-Compose to get started!
   
 Just change the MySQL environmental variables in the .env.sample file and rename it to .env  
-Then just run ```docker-compose up -d``` and the app and MySQL backend will deploy and start running w/ database persistence!  
+Then just run ```docker-compose up -d``` and the app and MySQL backend will deploy and start running w/ database persistence! I'd recommend an extra step of using a reverse proxy such as Traefik or Nginx to securely expose your services to outside your LAN and secure with certificates. I used Nginx and a wildcard cloudflare certificate on my instance.
 
 View a demo @ https://fantasymvp.vaidyan.me  
+
+Here's a sample of my nginx configuration for reference
+```
+# Forward both apex and www from non-SSL to https://www
+
+server {
+	listen 80;
+	server_name fantasymvp.vaidyan.me www.fantasymvp.vaidyan.me;
+	return 301 https://fantasymvp.vaidyan.me$request_uri;
+}
+server {
+	listen 443 ssl;
+	server_name fantasymvp.vaidyan.me www.fantasymvp.vaidyan.me;
+	ssl_certificate /etc/letsencrypt/live/vaidyan.me/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/vaidyan.me/privkey.pem;
+	include /etc/nginx/snippets/ssl-params.conf;
+	location / {
+		proxy_hide_header X-Powered-By;
+		proxy_pass_header Authorization;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Host $host;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_buffering off;
+		proxy_set_header Connection "";
+		proxy_read_timeout 36000s;
+		proxy_redirect off;
+		proxy_pass http://docker-host-ip:3000;
+	}
+}
+
+```
   
   
 ## <div align="center">Technologies:  </div>
